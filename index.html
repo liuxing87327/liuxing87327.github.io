@@ -94,6 +94,134 @@
 
   <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
   
+    <a href="/2015/06/17/linux统计内存块/" title="linux统计内存块" itemprop="url">
+  
+      <time datetime="2015-06-16T17:02:00.000Z" itemprop="datePublished">2015-06-17</time>
+    <h1 itemprop="name">linux统计内存块</h1>
+    
+     
+           <p itemprop="description" >纯粹备忘
+统计内存块pmap -x $pid | awk ‘{ if($3 &amp;gt; 64000 &amp;amp;&amp;amp; $3 &amp;lt; 65537) count++ } END { print count }’
+导出内存块明细pmap -x $pid &amp;gt; pmap.log
+</p>
+        
+    
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
+  
+    <a href="/2015/06/17/Tomcat的APR优化/" title="Tomcat的APR优化" itemprop="url">
+  
+      <time datetime="2015-06-16T16:53:00.000Z" itemprop="datePublished">2015-06-17</time>
+    <h1 itemprop="name">Tomcat的APR优化</h1>
+    
+     
+           <p itemprop="description" >什么是APR？
+Tomcat可以使用APR来提供超强的可伸缩性和性能，更好地集成本地服务器技术。
+APR(Apache Portable Runtime)是一个高可移植库，它是Apache HTTP Server 2.x的核心。
+APR有很多用途，包括访问高级IO功能(例如sen</p>
+        
+    
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
+  
+    <a href="/2015/06/17/使用google-perftools优化tomcat/" title="使用google-perftools优化tomcat" itemprop="url">
+  
+      <time datetime="2015-06-16T16:41:00.000Z" itemprop="datePublished">2015-06-17</time>
+    <h1 itemprop="name">使用google-perftools优化tomcat</h1>
+    
+     
+           <p itemprop="description" >这个工具可让开发创建更强大的应用程序，特别是那些用C++模版开发的多线程应用程序，包括TCMalloc, heap-checker, heap-profiler 和cpu-profiler。
+开源中国社区Google PerfTools首页、文档和下载
+前置依赖避免后续安装错误
+</p>
+        
+    
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
+  
+    <a href="/2015/06/17/MemAdmin管理Memcached/" title="MemAdmin管理Memcached" itemprop="url">
+  
+      <time datetime="2015-06-16T16:24:00.000Z" itemprop="datePublished">2015-06-17</time>
+    <h1 itemprop="name">MemAdmin管理Memcached</h1>
+    
+     
+           <p itemprop="description" >MemAdmin是一款可视化的Memcached管理与监控工具，基于 PHP5 &amp;amp; JQuery 开发，体积小，操作简单。
+主要功能：
+
+服务器参数监控：STATS、SETTINGS、ITEMS、SLABS、SIZES实时刷新
+服务器性能监控：GET、DELETE、INC</p>
+        
+    
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
+  
+    <a href="/2015/06/17/linux安装jdk/" title="linux安装jdk" itemprop="url">
+  
+      <time datetime="2015-06-16T16:17:00.000Z" itemprop="datePublished">2015-06-17</time>
+    <h1 itemprop="name">linux安装jdk</h1>
+    
+     
+           <p itemprop="description" >记录一下
+安装cd /usr/local/java/ 
+或
+cd /usr/java/
+
+tar -zxvf 文件名.tar.gz
+可以修改文件夹读写、所有者、所属组http://www.tuicool.com/articles/b6bimiz
+环境变量配置全局方式：
+vi /e</p>
+        
+    
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
+  
+    <a href="/2015/06/17/wget下载jdk/" title="wget下载jdk" itemprop="url">
+  
+      <time datetime="2015-06-16T16:02:00.000Z" itemprop="datePublished">2015-06-17</time>
+    <h1 itemprop="name">wget下载jdk</h1>
+    
+     
+           <p itemprop="description" >通常需要下载jdk时，直接用wget命令是不行的。那么，如何解决呢？只需要在wget的时候加上一个特殊的cookie就可以搞定
+JDK 7
+wget --no-cookies --no-check-certificate --header &quot;Cookie:gpw_e24=http</p>
+        
+    
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
+  
+    <a href="/2015/06/16/linux命令备忘/" title="linux命令备忘" itemprop="url">
+  
+      <time datetime="2015-06-16T15:58:00.000Z" itemprop="datePublished">2015-06-16</time>
+    <h1 itemprop="name">linux命令备忘</h1>
+    
+     
+           <p itemprop="description" >记录一下自己常用的linux命令
+独立用户需要配置path,切换到根目录查看path
+vi .bash_profile
+重新给文件夹赋权限
+chown -R yishou apache-tomcat-7.0.47
+修改密码
+passwd yishou
+新增用户，会自动创建同名文件</p>
+        
+    
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
+  
     <a href="/2015/06/14/GitHub博客搭建/" title="GitHub博客搭建" itemprop="url">
   
       <time datetime="2015-06-13T18:52:00.000Z" itemprop="datePublished">2015-06-14</time>
@@ -140,118 +268,9 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
   </a>
 </section>
 
-  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
-  
-    <a href="/2015/04/21/spring4不兼容ibatis的解决方法 /" title="spring4不兼容ibatis的解决方法 " itemprop="url">
-  
-      <time datetime="2015-04-20T16:46:00.000Z" itemprop="datePublished">2015-04-21</time>
-    <h1 itemprop="name">spring4不兼容ibatis的解决方法 </h1>
-    
-     
-           <p itemprop="description" >因为spring升级到4.x后，orm包里面移除了对ibatis的支持，如果orm使用4.x版本的话项目会启动失败。查看orm-3.x版本的SqlMapClientFactoryBean类，里面说的很清楚，只支持到3.x。如果可以升级到mybatis的话尽量升级，否则可以使用如下</p>
-        
-    
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
-  
-    <a href="/2015/04/21/计算地图坐标是否在多边形内/" title="计算地图坐标是否在多边形内" itemprop="url">
-  
-      <time datetime="2015-04-20T16:44:00.000Z" itemprop="datePublished">2015-04-21</time>
-    <h1 itemprop="name">计算地图坐标是否在多边形内</h1>
-    
-     
-           <p itemprop="description" >使用百度地图计算http://api.map.baidu.com/library/GeoUtils/1.2/examples/simple.htmlhttp://api.map.baidu.com/library/GeoUtils/1.2/docs/symbols/BMapLib</p>
-        
-    
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
-  
-    <a href="/2015/04/21/java和数据库计算两个坐标的距离/" title="java和数据库计算两个坐标的距离" itemprop="url">
-  
-      <time datetime="2015-04-20T16:41:00.000Z" itemprop="datePublished">2015-04-21</time>
-    <h1 itemprop="name">java和数据库计算两个坐标的距离</h1>
-    
-     
-           <p itemprop="description" >使用Java进行计算/** * 类功能说明：地图坐标距离计算工具类 * Title: DistanceUtil.java * @author liuxing * @date 2013-9-8 下午10:36:03 * @version V1.0 */public class Di</p>
-        
-    
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
-  
-    <a href="/2015/02/09/websocket-demo/" title="Java Websocket实例" itemprop="url">
-  
-      <time datetime="2015-02-09T15:33:56.000Z" itemprop="datePublished">2015-02-09</time>
-    <h1 itemprop="name">Java Websocket实例</h1>
-    
-     
-           <p itemprop="description" >记录下自己在用的websocket
-介绍现在很多网站为了实现即时通讯，所用的技术都是轮询(polling)。轮询是在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客服端的浏览器。这种传统的HTTP request 的模式带</p>
-        
-    
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
-  
-    <a href="/2015/02/01/jquery常用选择器/" title="jquery常用选择器" itemprop="url">
-  
-      <time datetime="2015-01-31T16:00:00.000Z" itemprop="datePublished">2015-02-01</time>
-    <h1 itemprop="name">jquery常用选择器</h1>
-    
-     
-           <p itemprop="description" >记录一下
-选择器基本选择器 #id —— 根据指定的id匹配一个元素 element —— 根据“元素名”匹配元素 .class —— 根据指定的“类名”匹配元素 selector1,selector2,selector3… —— 组合选择器，为并集关系
-
-—— 通用选择器， 匹</p>
-        
-    
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
-  
-    <a href="/2015/01/01/faqs/" title="备忘" itemprop="url">
-  
-      <time datetime="2014-12-31T16:00:00.000Z" itemprop="datePublished">2015-01-01</time>
-    <h1 itemprop="name">备忘</h1>
-    
-     
-           <p itemprop="description" >记录工作中遇到的一些小问题及解决办法，以防忘记后重头再找答案。
-格式:问:Win7下 Eclipse中按”Alt+Ctrl+Down或Alt+Ctrl+Up”时，结果屏幕倒了怎么办？答:是不是和其它应用的快捷键冲突了？比如Intel显卡，则可选择“图形属性”&amp;gt;“选项和支持”</p>
-        
-    
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
-  
-    <a href="/2014/12/10/我编程我快乐/" title="我编程我快乐" itemprop="url">
-  
-      <time datetime="2014-12-10T06:51:20.000Z" itemprop="datePublished">2014-12-10</time>
-    <h1 itemprop="name">我编程我快乐</h1>
-    
-     
-           <p itemprop="description" >感觉还不错，分享一下！
-
-
-
-
-你懂的！
-链接: http://pan.baidu.com/s/1nqpGE 密码: k2un</p>
-        
-    
-  </a>
-</section>
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </div>
@@ -292,7 +311,7 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
 		
 			<li><a href="/categories/心态/" title="心态">心态<sup>3</sup></a></li>
 		
-			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>3</sup></a></li>
+			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>10</sup></a></li>
 		
 		</ul>
 </div>
@@ -303,9 +322,15 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
+			<li><a href="/tags/APR/" title="APR">APR<sup>1</sup></a></li>
+		
 			<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
 		
+			<li><a href="/tags/CNZZ/" title="CNZZ">CNZZ<sup>1</sup></a></li>
+		
 			<li><a href="/tags/DNSPod/" title="DNSPod">DNSPod<sup>1</sup></a></li>
+		
+			<li><a href="/tags/GIT/" title="GIT">GIT<sup>1</sup></a></li>
 		
 			<li><a href="/tags/GitHub-Pages/" title="GitHub Pages">GitHub Pages<sup>1</sup></a></li>
 		
@@ -313,7 +338,15 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
 		
 			<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 		
+			<li><a href="/tags/Java/" title="Java">Java<sup>1</sup></a></li>
+		
 			<li><a href="/tags/Java7/" title="Java7">Java7<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MemAdmin/" title="MemAdmin">MemAdmin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Memcached/" title="Memcached">Memcached<sup>1</sup></a></li>
 		
 			<li><a href="/tags/RestTemplate/" title="RestTemplate">RestTemplate<sup>1</sup></a></li>
 		
@@ -321,27 +354,13 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
 		
 			<li><a href="/tags/TWR/" title="TWR">TWR<sup>1</sup></a></li>
 		
+			<li><a href="/tags/Tomcat/" title="Tomcat">Tomcat<sup>1</sup></a></li>
+		
 			<li><a href="/tags/httpClient/" title="httpClient">httpClient<sup>1</sup></a></li>
 		
 			<li><a href="/tags/ibatis/" title="ibatis">ibatis<sup>1</sup></a></li>
 		
-			<li><a href="/tags/jmagick/" title="jmagick">jmagick<sup>2</sup></a></li>
-		
-			<li><a href="/tags/jquery/" title="jquery">jquery<sup>1</sup></a></li>
-		
-			<li><a href="/tags/js/" title="js">js<sup>2</sup></a></li>
-		
-			<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
-		
-			<li><a href="/tags/pinyin4j/" title="pinyin4j">pinyin4j<sup>1</sup></a></li>
-		
-			<li><a href="/tags/websocket/" title="websocket">websocket<sup>2</sup></a></li>
-		
-			<li><a href="/tags/windows/" title="windows">windows<sup>2</sup></a></li>
-		
-			<li><a href="/tags/地图/" title="地图">地图<sup>4</sup></a></li>
-		
-			<li><a href="/tags/坐标运算/" title="坐标运算">坐标运算<sup>1</sup></a></li>
+			<li><a href="/tags/jdk/" title="jdk">jdk<sup>1</sup></a></li>
 		
 		</ul>
 </div>
@@ -351,7 +370,7 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jmagick/" style="font-size: 13.33px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/websocket/" style="font-size: 13.33px;">websocket</a> <a href="/tags/windows/" style="font-size: 13.33px;">windows</a> <a href="/tags/地图/" style="font-size: 20px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a>
+       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 17.5px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a>
     </div>
   </div>
 
