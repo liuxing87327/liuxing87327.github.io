@@ -1,0 +1,575 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="uyan_auth" content="4a83c5c6c3"/>
+    <meta name="baidu-site-verification" content="CvWZNC2obZ" />
+    <meta name="baidu_union_verify" content="d1952c66cf48912e21c18c7c581f382a">
+    <meta name="google-site-verification" content="HkWRO12UFpAhchYbHb-T6PxRSroKfbjN4XIGs0IqCes" />
+  
+    <title>一个简单的百度地图示例 | liuxing&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="liuxing">
+    
+    <meta name="description" content="介绍百度地图API是一套由JavaScript语言编写的应用程序接口，它能够帮助您在网站中构建功能丰富、交互性强的地图应用。百度地图API包含了构建地图基本功能的各种接口，提供了诸如本地搜索、路线规划等数据服务。
+百度地图相对谷歌地图来说，提供的数据比较全面，比如交通路线。功能也比较多，基本上现在各">
+    
+    
+    
+    
+    <link rel="alternate" href="/atom.xml" title="liuxing&#39;s blog" type="application/atom+xml">
+    
+    
+    
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?e0270889606c4b2a973302b9badc62a1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+
+</head>
+  <body>
+    <header>
+      <div>
+    
+
+    <div id="textlogo">
+        <h1 class="site-name"><a href="/" title="liuxing&#39;s blog">liuxing&#39;s blog</a></h1>
+        <a class="blog-motto">
+            
+            青春须早为,岂能长少年！
+            
+        </a>
+    </div>
+
+    <div class="navbar"><a class="navbutton navmobile" href="#" title="菜单"></a></div>
+
+    <nav class="animated">
+        <ul>
+            <ul>
+                
+                    <li><a href="/">首页</a></li>
+                
+                    <li><a href="/archives">归档</a></li>
+                
+                    <li><a href="/tags">标签</a></li>
+                
+                    <li><a href="/categories">分类</a></li>
+                
+                    <li><a href="/about">关于</a></li>
+                
+                <li>
+                    <!--谷歌站内搜索-->
+                    
+                        <form class="search" action="/search/index.html" method="get" target="_blank" accept-charset="utf-8">
+                            <label>Search</label>
+                            <input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索"/>
+                        </form>
+                    
+
+                    <!--百度站内搜索-->
+                    
+
+                    <!--谷歌搜索，指定site-->
+                    
+                </li>
+            </ul>
+    </nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+    <article itemprop="articleBody">
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2012/09/08/一个简单的百度地图示例/" title="一个简单的百度地图示例" itemprop="url">一个简单的百度地图示例</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="https://plus.google.com/https://plus.google.com/u/0/111580157002745346775/posts?rel=author" title="liuxing" target="_blank" itemprop="author">liuxing</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2012-09-07T16:25:00.000Z" itemprop="datePublished">2012-09-08</time>
+    更新日期:<time datetime="2015-06-16T13:07:16.000Z" itemprop="dateModified">2015-06-16</time>
+    
+  </p>
+</header>
+        <div class="article-content">
+            
+            
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a></li></ol>
+            </div>
+            
+            <h2 id="介绍">介绍</h2><p>百度地图API是一套由JavaScript语言编写的应用程序接口，它能够帮助您在网站中构建功能丰富、交互性强的地图应用。百度地图API包含了构建地图基本功能的各种接口，提供了诸如本地搜索、路线规划等数据服务。</p>
+<p>百度地图相对谷歌地图来说，提供的数据比较全面，比如交通路线。功能也比较多，基本上现在各大网站都是使用的百度地图，同时文档和API也做得不错。</p>
+<p>个人建议使用百度地图API开发时，详细阅读官方提供的类参考和官方示例。最好是对API中各个类的基本功能有个大致的了解。如果看到某些网站的地图很炫，也可以借助firebug或其他工具查看源码参考其实现。官网成功案例展示的那些网站的地图功能都可以参考。如果想要更高级绚丽的功能，官网的地图开源库也可以了解一下。</p>
+<p>贴出来的code是js的代码，可以运行的实例请下载文章的附件。有部分功能使用了jquery，不了解的童鞋请了解下jquery的使用语法。</p>
+<p>此demo主要实现了以下几个功能</p>
+<ul>
+<li>创建一个简单地图实例，配置了常用的地图上的控件，比如缩略地图、比例尺控件、缩放控件等。</li>
+<li>使用ajax查询后台数据，并将其标注到地图中（大众化需求）。</li>
+<li>拖拽地图后保存修改后的坐标（大众化需求）。</li>
+<li>通过地图外的html操作地图内的功能（demo中只提供了点击某个链接，在地图中对应标注上打开信息窗口，需要其他工的请参考类文档后自由发挥）。</li>
+<li>其他一些细微的功能，基本地图中要用到的。</li>
+</ul>
+<p>code中使用js实现的hash完成了部分功能，不理解该原理的童鞋也请自己去补习相关知识，或者使用数组形式，官方示例中可以找到相关实现好的code。</p>
+<p>自己的js是已经使用闭包的形式了，这里还是普通形式，建议使用闭包方式，好处的话大家都懂得。最后还是那句话，请多看类参考文档和官方示例。</p>
+<h2 id="示例">示例</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!-- 开始加载地图的处理 --&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="openscad"></span><br><span class="line"><span class="comment">// 存储信息窗的hash表</span></span><br><span class="line">var infoWindowMap = new Hash<span class="params">()</span>; </span><br><span class="line"><span class="comment">// 存储标注的hash表</span></span><br><span class="line">var markerMap = new Hash<span class="params">()</span>;	  </span><br><span class="line"></span><br><span class="line">var buildingJsonStr = '[&#123;<span class="string">"buildingId"</span>: <span class="string">"0710101842282A67E3162603F6250D67"</span>, <span class="string">"name"</span>: <span class="string">"02"</span>, <span class="string">"x"</span>: <span class="string">"31.22127"</span>, <span class="string">"y"</span>: <span class="string">"121.398516"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"07101018422820AD64EAB3AC576FFD3E"</span>, <span class="string">"name"</span>: <span class="string">"03"</span>, <span class="string">"x"</span>: <span class="string">"31.221587"</span>, <span class="string">"y"</span>: <span class="string">"121.397745"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"07101018422845B31172C77A176BDB43"</span>, <span class="string">"name"</span>: <span class="string">"04"</span>, <span class="string">"x"</span>: <span class="string">"31.220695"</span>, <span class="string">"y"</span>: <span class="string">"121.39827"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228A7EF4B0094030694C1B5"</span>, <span class="string">"name"</span>: <span class="string">"05"</span>, <span class="string">"x"</span>: <span class="string">"31.220769"</span>, <span class="string">"y"</span>: <span class="string">"121.397956"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228057205C5220A4924B99F"</span>, <span class="string">"name"</span>: <span class="string">"06"</span>, <span class="string">"x"</span>: <span class="string">"31.220178"</span>, <span class="string">"y"</span>: <span class="string">"121.398149"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"07101018422891C6FB5F3838EA67AEB6"</span>, <span class="string">"name"</span>: <span class="string">"07"</span>, <span class="string">"x"</span>: <span class="string">"31.220236"</span>, <span class="string">"y"</span>: <span class="string">"121.397776"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228E99A96B62460853A93B0"</span>, <span class="string">"name"</span>: <span class="string">"08"</span>, <span class="string">"x"</span>: <span class="string">"31.220576"</span>, <span class="string">"y"</span>: <span class="string">"121.397269"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228F4A035D852D89F418667"</span>, <span class="string">"name"</span>: <span class="string">"09"</span>, <span class="string">"x"</span>: <span class="string">"31.220638"</span>, <span class="string">"y"</span>: <span class="string">"121.396932"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228869C8C3AA796DB2D6A17"</span>, <span class="string">"name"</span>: <span class="string">"10"</span>, <span class="string">"x"</span>: <span class="string">"31.22051"</span>, <span class="string">"y"</span>: <span class="string">"121.39633"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"0710101842288CD20D0E333F3D775AEE"</span>, <span class="string">"name"</span>: <span class="string">"11"</span>, <span class="string">"x"</span>: <span class="string">"31.220634"</span>, <span class="string">"y"</span>: <span class="string">"121.395917"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228465B808DF2361EF74872"</span>, <span class="string">"name"</span>: <span class="string">"12"</span>, <span class="string">"x"</span>: <span class="string">"31.221186"</span>, <span class="string">"y"</span>: <span class="string">"121.396132"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"07101018422876B9BD4DD764214A37EF"</span>, <span class="string">"name"</span>: <span class="string">"13"</span>, <span class="string">"x"</span>: <span class="string">"31.221151"</span>, <span class="string">"y"</span>: <span class="string">"121.396478"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"07101018422860A7AEE993AD2F3D254E"</span>, <span class="string">"name"</span>: <span class="string">"14"</span>, <span class="string">"x"</span>: <span class="string">"31.221923"</span>, <span class="string">"y"</span>: <span class="string">"121.396478"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228D993F7D6F104C6241EA0"</span>, <span class="string">"name"</span>: <span class="string">"15"</span>, <span class="string">"x"</span>: <span class="string">"31.221529"</span>, <span class="string">"y"</span>: <span class="string">"121.397035"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228C77408F277C2A0FFF9EA"</span>, <span class="string">"name"</span>: <span class="string">"16"</span>, <span class="string">"x"</span>: <span class="string">"31.222487"</span>, <span class="string">"y"</span>: <span class="string">"121.39682"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"07101018422850C5CEFCC37B745AE217"</span>, <span class="string">"name"</span>: <span class="string">"17"</span>, <span class="string">"x"</span>: <span class="string">"31.222155"</span>, <span class="string">"y"</span>: <span class="string">"121.397278"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228CE5998B16072B7EADAF0"</span>, <span class="string">"name"</span>: <span class="string">"18"</span>, <span class="string">"x"</span>: <span class="string">"31.222992"</span>, <span class="string">"y"</span>: <span class="string">"121.396829"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228C4AE0885ED1B1934CAC7"</span>, <span class="string">"name"</span>: <span class="string">"19"</span>, <span class="string">"x"</span>: <span class="string">"31.223008"</span>, <span class="string">"y"</span>: <span class="string">"121.397215"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228A28019A162C9F30FB412"</span>, <span class="string">"name"</span>: <span class="string">"20"</span>, <span class="string">"x"</span>: <span class="string">"31.223054"</span>, <span class="string">"y"</span>: <span class="string">"121.397745"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"071010184228BE86B8C490400D07A7D9"</span>, <span class="string">"name"</span>: <span class="string">"21"</span>, <span class="string">"x"</span>: <span class="string">"31.223039"</span>, <span class="string">"y"</span>: <span class="string">"121.398109"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"0710101842284F721F26E60E4AE38B78"</span>, <span class="string">"name"</span>: <span class="string">"22"</span>, <span class="string">"x"</span>: <span class="string">"31.223062"</span>, <span class="string">"y"</span>: <span class="string">"121.398702"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"07101018422835C890FA62A7AC3D7B4F"</span>, <span class="string">"name"</span>: <span class="string">"23"</span>, <span class="string">"x"</span>: <span class="string">"31.223077"</span>, <span class="string">"y"</span>: <span class="string">"121.399106"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"0710101842293A343A9B0EE1A2F87ED6"</span>, <span class="string">"name"</span>: <span class="string">"24"</span>, <span class="string">"x"</span>: <span class="string">"31.222533"</span>, <span class="string">"y"</span>: <span class="string">"121.398567"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"0710101842298447B5294F823BF14B2E"</span>, <span class="string">"name"</span>: <span class="string">"25"</span>, <span class="string">"x"</span>: <span class="string">"31.222128"</span>, <span class="string">"y"</span>: <span class="string">"121.398109"</span>&#125;, &#123;<span class="string">"buildingId"</span>: <span class="string">"07101018422905330D8B854F88DD30DD"</span>, <span class="string">"name"</span>: <span class="string">"26"</span>, <span class="string">"x"</span>: <span class="string">"31.221888"</span>, <span class="string">"y"</span>: <span class="string">"121.398769"</span>&#125;]';</span><br><span class="line"></span><br><span class="line">var estateJsonStr = '[&#123;<span class="string">"estateId"</span>: <span class="string">"0705280229021824977FE8318D179397"</span>, <span class="string">"name"</span>: <span class="string">"天山河畔花园"</span>, <span class="string">"address"</span>: <span class="string">"水城路883弄/长宁路"</span>, <span class="string">"x"</span>: <span class="string">"31.221034"</span>, <span class="string">"y"</span>: <span class="string">"121.397223"</span>&#125;]'</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 获取相关的json数组</span><br><span class="line"> * @returns</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJsonData</span><span class="params">()</span> &#123;</span></span><br><span class="line">    var reltJson;</span><br><span class="line">    var url = <span class="string">"Your url"</span>; </span><br><span class="line"></span><br><span class="line">	<span class="comment">// 此处注释请求后台程序获取json数组的方法，直接返回定义好的json数组</span></span><br><span class="line"><span class="comment">//    $.ajax(&#123;</span></span><br><span class="line"><span class="comment">//        type: 'GET',</span></span><br><span class="line"><span class="comment">//        url: url,</span></span><br><span class="line"><span class="comment">//        async: false,</span></span><br><span class="line"><span class="comment">//        dataType: 'json',</span></span><br><span class="line"><span class="comment">//        timeout: 50000,</span></span><br><span class="line"><span class="comment">//        cache: false,</span></span><br><span class="line"><span class="comment">//        error: function(XMLHttpRequest, status, thrownError) &#123;</span></span><br><span class="line"><span class="comment">//            alert('Error loading ' + url +', Please send it again!');</span></span><br><span class="line"><span class="comment">//        &#125;,</span></span><br><span class="line"><span class="comment">//        success: function(json) &#123;</span></span><br><span class="line"><span class="comment">//            reltJson = json;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;);</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 转换json数组字符串成json对象，正式使用时上述ajax方法直接拿到的是json对象，不需要这步操作</span></span><br><span class="line">	reltJson = eval<span class="params">(buildingJsonStr)</span>;</span><br><span class="line"></span><br><span class="line">    return reltJson;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局变量</span></span><br><span class="line">var map;			<span class="comment">// 地图对象		</span></span><br><span class="line">var estateJson;		<span class="comment">// 中心点json数据</span></span><br><span class="line">var mouseoutIcon;   <span class="comment">// 鼠标移出标注时的图像对象</span></span><br><span class="line">var mouseoverIcon;  <span class="comment">// 鼠标放在标注时的图像对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 绘制地图</span></span><br><span class="line">drawMap<span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 绘制地图</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawMap</span><span class="params">()</span>&#123;</span></span><br><span class="line">	estateJson = eval<span class="params">(estateJsonStr)</span>[<span class="number">0</span>];															<span class="comment">// 初始化中心点的json数据</span></span><br><span class="line">	map = new BMap.Map<span class="params">(<span class="string">"container"</span>,&#123;mapType: BMAP_HYBRID_MAP, enableHighResolution: <span class="literal">true</span>&#125;)</span>;			<span class="comment">// 设置卫星图为底图</span></span><br><span class="line">	initIcon<span class="params">()</span>;</span><br><span class="line">	configuration<span class="params">()</span>;</span><br><span class="line">	buildContextMenu<span class="params">()</span>;</span><br><span class="line">	initCenterMarker<span class="params">()</span>;</span><br><span class="line">	initOtherMarkers<span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 地图基本功能设置</span><br><span class="line"> * @param map</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">configuration</span><span class="params">()</span>&#123;</span></span><br><span class="line">	<span class="comment">// 初始化中心坐标</span></span><br><span class="line">	var point = getPoint<span class="params">(estateJson.y, estateJson.x)</span>;				</span><br><span class="line">	<span class="comment">// 启用键盘操作</span></span><br><span class="line">	map.enableKeyboard<span class="params">()</span>;								</span><br><span class="line">	<span class="comment">// 启用滚轮放大缩小</span></span><br><span class="line">	map.enableScrollWheelZoom<span class="params">()</span>;		</span><br><span class="line">	<span class="comment">// 初始化地图,设置中心点坐标和地图级别</span></span><br><span class="line">	map.centerAndZoom<span class="params">(point, <span class="number">18</span>)</span>;                    			</span><br><span class="line">	<span class="comment">// 添加比例尺控件</span></span><br><span class="line">	map.addControl<span class="params">(new BMap.ScaleControl<span class="params">()</span>)</span>;		</span><br><span class="line">	<span class="comment">// 添加平移缩放控件</span></span><br><span class="line">	map.addControl<span class="params">(new BMap.NavigationControl<span class="params">()</span>)</span>;											</span><br><span class="line">	<span class="comment">// 启用地图惯性拖拽</span></span><br><span class="line">	map.enableInertialDragging<span class="params">()</span>;										</span><br><span class="line">	<span class="comment">// 展示普通街道、卫星和路网的混合视图</span></span><br><span class="line">	map.addControl<span class="params">(new BMap.MapTypeControl<span class="params">(&#123;mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP]&#125;)</span>)</span>;	</span><br><span class="line">	<span class="comment">// 创建缩略地图控件</span></span><br><span class="line">	var control = new BMap.OverviewMapControl<span class="params">()</span>;										</span><br><span class="line">	<span class="comment">// 展开缩略地图控件，默认不展开</span></span><br><span class="line">	control.changeView<span class="params">()</span>;		</span><br><span class="line">	<span class="comment">// 添加缩略地图控件</span></span><br><span class="line">	map.addControl<span class="params">(control)</span>;  </span><br><span class="line">	<span class="comment">// 设置地图显示的城市 此项是必须设置的</span></span><br><span class="line">	map.setCurrentCity<span class="params">(<span class="string">"上海"</span>)</span>;          															</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 创建右键菜单</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildContextMenu</span><span class="params">()</span>&#123;</span></span><br><span class="line">	var contextMenu  = new BMap.ContextMenu<span class="params">()</span>;</span><br><span class="line">	var txtMenuItem = [</span><br><span class="line">	  &#123;</span><br><span class="line">	   <span class="built_in">text</span>:'放大',</span><br><span class="line">	   callback:<span class="function"><span class="keyword">function</span><span class="params">()</span>&#123;</span>map.zoomIn<span class="params">()</span>;&#125;</span><br><span class="line">	  &#125;,</span><br><span class="line">	  &#123;</span><br><span class="line">	   <span class="built_in">text</span>:'缩小',</span><br><span class="line">	   callback:<span class="function"><span class="keyword">function</span><span class="params">()</span>&#123;</span>map.zoomOut<span class="params">()</span>;&#125;</span><br><span class="line">	  &#125;,</span><br><span class="line">	  &#123;</span><br><span class="line">	   <span class="built_in">text</span>:'放置到最大级',</span><br><span class="line">	   callback:<span class="function"><span class="keyword">function</span><span class="params">()</span>&#123;</span>map.setZoom<span class="params">(<span class="number">20</span>)</span>;&#125;</span><br><span class="line">	  &#125;</span><br><span class="line">	 ];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span><span class="params">(var i=<span class="number">0</span>; i &lt; txtMenuItem.length; i++)</span>&#123;</span><br><span class="line">		contextMenu.addItem<span class="params">(new BMap.MenuItem<span class="params">(txtMenuItem[i].text,txtMenuItem[i].callback,<span class="number">100</span>)</span>)</span>;</span><br><span class="line">		<span class="keyword">if</span><span class="params">(i==<span class="number">1</span> || i==<span class="number">3</span>)</span> &#123;</span><br><span class="line">			contextMenu.addSeparator<span class="params">()</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	map.addContextMenu<span class="params">(contextMenu)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 初始化标注图像</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initIcon</span><span class="params">()</span>&#123;</span></span><br><span class="line">	mouseoutIcon = new BMap.Icon<span class="params">(<span class="string">"images/marker-icon.gif"</span>, new BMap.Size<span class="params">(<span class="number">12</span>, <span class="number">21</span>)</span>, &#123;imageOffset:new BMap.Size<span class="params">(-<span class="number">46</span>,<span class="number">0</span>)</span>&#125;)</span>;</span><br><span class="line">	mouseoverIcon = new BMap.Icon<span class="params">(<span class="string">"images/marker-icon.gif"</span>, new BMap.Size<span class="params">(<span class="number">12</span>, <span class="number">21</span>)</span>, &#123;imageOffset:new BMap.Size<span class="params">(-<span class="number">69</span>,<span class="number">0</span>)</span>&#125;)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 初始化中心点标注</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initCenterMarker</span><span class="params">()</span>&#123;</span></span><br><span class="line">	addMarker<span class="params">(getPoint<span class="params">(estateJson.y, estateJson.x)</span>, estateJson.name, estateJson.estateId)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 初始化其他标注</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initOtherMarkers</span><span class="params">()</span>&#123;</span></span><br><span class="line">	<span class="comment">// 获取其他json数据</span></span><br><span class="line">	var markersJson = getJsonData<span class="params">()</span>;</span><br><span class="line">	$.each<span class="params">(markersJson, function<span class="params">()</span>&#123;</span><br><span class="line">		addMarker<span class="params">(getPoint<span class="params">(this.y, this.x)</span>, this.name, this.buildingId)</span>;</span><br><span class="line">	&#125;)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 获取栋座坐标point对象</span><br><span class="line"> * 无坐标时，随机生成在小区坐标附近</span><br><span class="line"> * @param y</span><br><span class="line"> * @param x</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPoint</span><span class="params">(y, x)</span>&#123;</span></span><br><span class="line">	<span class="comment">// 因为json字符串中定义的是字符串，需要转换成float</span></span><br><span class="line">	var _y = parseFloat<span class="params">(y)</span>;</span><br><span class="line">	var _x = parseFloat<span class="params">(x)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 如果是有效的坐标，则直接创建point</span></span><br><span class="line">	<span class="keyword">if</span><span class="params">(_y &gt; <span class="number">0</span> || _x &gt; <span class="number">0</span>)</span></span><br><span class="line">		return new BMap.Point<span class="params">(_y, _x)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 如果不是有效坐标，则创建中心点附近的随机坐标值</span></span><br><span class="line">	var bounds = map.getBounds<span class="params">()</span>;</span><br><span class="line">	var sw = bounds.getSouthWest<span class="params">()</span>;</span><br><span class="line">	var ne = bounds.getNorthEast<span class="params">()</span>;</span><br><span class="line">	var lngSpan = Math.<span class="built_in">abs</span><span class="params">(sw.lng - ne.lng)</span>;</span><br><span class="line">	var latSpan = Math.<span class="built_in">abs</span><span class="params">(ne.lat - sw.lat)</span>;</span><br><span class="line">	return new BMap.Point<span class="params">(sw.lng + lngSpan * <span class="params">(Math.random<span class="params">()</span> * <span class="number">0.8</span>)</span>, ne.lat - latSpan * <span class="params">(Math.random<span class="params">()</span> * <span class="number">0.8</span>)</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 添加多个标注</span><br><span class="line"> * @param point 坐标</span><br><span class="line"> * @param text 标注文本</span><br><span class="line"> * @param buildingId 编号</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMarker</span><span class="params">(point, text, id)</span>&#123;</span></span><br><span class="line">	<span class="comment">// 创建标注</span></span><br><span class="line">	var marker = new BMap.Marker<span class="params">(point, &#123;icon:mouseoutIcon&#125;)</span>;</span><br><span class="line">	marker.setLabel<span class="params">(new BMap.Label<span class="params">(text, &#123;offset:new BMap.Size<span class="params">(<span class="number">9</span>,-<span class="number">20</span>)</span>&#125;)</span>)</span>;</span><br><span class="line">	marker.setTitle<span class="params">(text)</span>;</span><br><span class="line">	marker.enableDragging<span class="params">()</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 标注拖拽结束后绑定的事件</span></span><br><span class="line">	marker.addEventListener<span class="params">(<span class="string">"dragend"</span>, function<span class="params">(e)</span>&#123;</span><br><span class="line">		editCoord<span class="params">(id, e.point.lat, e.point.lng, text)</span>;</span><br><span class="line">	&#125;)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 鼠标离开标注时绑定的事件</span></span><br><span class="line">	marker.addEventListener<span class="params">(<span class="string">"mouseout"</span>, function<span class="params">(e)</span>&#123;</span><br><span class="line">		marker.setIcon<span class="params">(mouseoutIcon)</span>;</span><br><span class="line">	&#125;)</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 鼠标移到标注时绑定的事件</span></span><br><span class="line">	marker.addEventListener<span class="params">(<span class="string">"mouseover"</span>, function<span class="params">(e)</span>&#123;</span><br><span class="line">		marker.setIcon<span class="params">(mouseoverIcon)</span>;</span><br><span class="line">	&#125;)</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 鼠标点击标注时绑定的事件</span></span><br><span class="line">	marker.addEventListener<span class="params">(<span class="string">"click"</span>, function<span class="params">(e)</span>&#123; </span><br><span class="line">		marker.openInfoWindow<span class="params">(infoWindow)</span>;</span><br><span class="line">	&#125;)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 信息窗关闭时绑定的事件</span></span><br><span class="line">	marker.addEventListener<span class="params">(<span class="string">"infowindowclose"</span>, function<span class="params">(e)</span>&#123; </span><br><span class="line">		marker.setIcon<span class="params">(mouseoutIcon)</span>;</span><br><span class="line">	&#125;)</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 信息窗打开时绑定的事件</span></span><br><span class="line">	marker.addEventListener<span class="params">(<span class="string">"infowindowopen"</span>, function<span class="params">(e)</span>&#123; </span><br><span class="line">		marker.setIcon<span class="params">(mouseoverIcon)</span>;</span><br><span class="line">	&#125;)</span>;</span><br><span class="line">	 </span><br><span class="line">	<span class="comment">// 显示到地图中</span></span><br><span class="line">	map.addOverlay<span class="params">(marker)</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建信息窗</span></span><br><span class="line">	var infoWindow = new BMap.InfoWindow<span class="params">(getContent<span class="params">(text)</span>)</span>;	</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 存储到hash</span></span><br><span class="line">	infoWindowMap.put<span class="params">(id, infoWindow)</span>;</span><br><span class="line">	markerMap.put<span class="params">(id, marker)</span>;</span><br><span class="line"></span><br><span class="line">	var link = '&lt;li&gt;&lt;a href=<span class="string">"javascript:void(0);"</span> onclick=<span class="string">"showInfoWindos(\''+id+'\')"</span>&gt;'+ <span class="built_in">text</span> +'&lt;/a&gt;&lt;/li&gt;';</span><br><span class="line">	$<span class="params">('#a_view')</span>.append<span class="params">(link)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 展示标注的信息窗</span><br><span class="line"> * @param id</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showInfoWindos</span><span class="params">(id)</span>&#123;</span></span><br><span class="line">	var marker = markerMap.get<span class="params">(id)</span>;</span><br><span class="line">	<span class="keyword">if</span><span class="params">(infoWindowMap.get<span class="params">(id)</span> != <span class="literal">undef</span>ined)</span>&#123;</span><br><span class="line">		marker.openInfoWindow<span class="params">(infoWindowMap.get<span class="params">(id)</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 保存坐标编辑</span><br><span class="line"> * @param id</span><br><span class="line"> * @param x</span><br><span class="line"> * @param y</span><br><span class="line"> * @param name</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">editCoord</span><span class="params">(id, x, y, name)</span>&#123;</span></span><br><span class="line"><span class="comment">//    $.ajax(&#123;</span></span><br><span class="line"><span class="comment">//        type: 'POST',</span></span><br><span class="line"><span class="comment">//        url: 'Your url',</span></span><br><span class="line"><span class="comment">//        data: &#123;	</span></span><br><span class="line"><span class="comment">//				'id' : id, </span></span><br><span class="line"><span class="comment">//				'x' : x, </span></span><br><span class="line"><span class="comment">//				'y' : y</span></span><br><span class="line"><span class="comment">//		&#125;,</span></span><br><span class="line"><span class="comment">//        success: function(data) &#123;</span></span><br><span class="line"><span class="comment">//            showMsg("&lt;strong&gt;" + name + "修改后的坐标已自动保存&lt;/strong&gt;");</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;);</span></span><br><span class="line"></span><br><span class="line">	showMsg<span class="params">('&lt;strong&gt;<span class="string">"' + name + '"</span>修改后的坐标已自动保存&lt;/strong&gt;')</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 获取信息窗html</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getContent</span><span class="params">(name)</span>&#123;</span></span><br><span class="line">	var content = <span class="string">"&lt;div&gt;&lt;p&gt;&#123;name&#125;&lt;/p&gt;&lt;/div&gt;"</span>;</span><br><span class="line">	return content.replace<span class="params">(<span class="string">"&#123;name&#125;"</span>, name)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 展示坐标修改后的提醒内容</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showMsg</span><span class="params">(msg)</span>&#123;</span></span><br><span class="line">	$<span class="params">('#msg_view')</span>.html<span class="params">(msg)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>酸奶小妹的博客也提供了不少的实例：<a href="http://www.cnblogs.com/milkmap/tag/%E5%9C%B0%E5%9B%BEAPI/default.html?page=1" target="_blank" rel="external">http://www.cnblogs.com/milkmap/tag/%E5%9C%B0%E5%9B%BEAPI/default.html?page=1</a></p>
+
+        </div>
+        <footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/地图/">地图</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/前端/">前端</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a class="jiathis_button_twitter">Twitter</a>
+    <a class="jiathis_button_evernote">EverNote</a>
+    <a href="http://www.jiathis.com/share?uid=1501277" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+     ralateuid:{"tsina":"1809603852"},hideMore:false}
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+2038458" charset="utf-8"></script>      
+
+
+</div>
+</footer>
+    </article>
+    
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/05/23/使用jmagick将CMYK转换为RGB/" title="使用jmagick将CMYK转换为RGB">
+  <strong>上一篇:</strong><br/>
+  <span>
+  使用jmagick将CMYK转换为RGB</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2012/09/08/JS Hash对象/"  title="JS Hash对象">
+ <strong>下一篇:</strong><br/>
+ <span>JS Hash对象
+</span>
+</a>
+</div>
+
+</nav>
+
+    
+<section class="comment">
+	
+	<div class="ds-thread" data-title="一个简单的百度地图示例" data-thread-key="一个简单的百度地图示例" data-author-key="liuxing" data-url="http://liuxing.info/post/一个简单的百度地图示例"></div>
+	
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	<div class="social-list" class="clearfix">
+		
+		<a href="http://weibo.com/1809603852" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/liuxing87327" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>11</sup></a></li>
+		
+			<li><a href="/categories/书摘/" title="书摘">书摘<sup>2</sup></a></li>
+		
+			<li><a href="/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		
+			<li><a href="/categories/前端/" title="前端">前端<sup>4</sup></a></li>
+		
+			<li><a href="/categories/心态/" title="心态">心态<sup>3</sup></a></li>
+		
+			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>3</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DNSPod/" title="DNSPod">DNSPod<sup>1</sup></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/" title="GitHub Pages">GitHub Pages<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Godaddy/" title="Godaddy">Godaddy<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Java7/" title="Java7">Java7<sup>1</sup></a></li>
+		
+			<li><a href="/tags/RestTemplate/" title="RestTemplate">RestTemplate<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Spring/" title="Spring">Spring<sup>3</sup></a></li>
+		
+			<li><a href="/tags/TWR/" title="TWR">TWR<sup>1</sup></a></li>
+		
+			<li><a href="/tags/httpClient/" title="httpClient">httpClient<sup>1</sup></a></li>
+		
+			<li><a href="/tags/ibatis/" title="ibatis">ibatis<sup>1</sup></a></li>
+		
+			<li><a href="/tags/jmagick/" title="jmagick">jmagick<sup>2</sup></a></li>
+		
+			<li><a href="/tags/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>2</sup></a></li>
+		
+			<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
+		
+			<li><a href="/tags/pinyin4j/" title="pinyin4j">pinyin4j<sup>1</sup></a></li>
+		
+			<li><a href="/tags/websocket/" title="websocket">websocket<sup>2</sup></a></li>
+		
+			<li><a href="/tags/windows/" title="windows">windows<sup>2</sup></a></li>
+		
+			<li><a href="/tags/地图/" title="地图">地图<sup>4</sup></a></li>
+		
+			<li><a href="/tags/坐标运算/" title="坐标运算">坐标运算<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+    <p class="asidetitle">相关链接</p>
+    <ul>
+        <li>
+            <a href="http://spring.io" target="_blank">
+                Spring
+            </a>
+        </li>
+        <li>
+            <a href="http://liuxing87327.iteye.com" target="_blank">
+                iTeye
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/" target="_blank">
+                GitHub
+            </a>
+        </li>
+        <li>
+            <a href="https://bitbucket.org/" target="_blank">
+                Bitbucket.org
+            </a>
+        </li>
+        <li>
+            <a href="http://www.stackoverflow.com/" target="_blank">
+                Stack Overflow
+            </a>
+        </li>
+        <li>
+            <a href="http://developer.android.com/" target="_blank">
+                Android Developer
+            </a>
+        </li>
+        <li>
+            <a href="http://blog.jobbole.com/" target="_blank">
+                Jobbole
+            </a>
+        </li>
+        <li>
+            <a href="http://www.ruanyifeng.com/blog/" target="_blank">
+                阮一峰的网络日志
+            </a>
+        </li>
+        <li>
+            <a href="http://kuang.io" target="_blank">
+                闷骚乔巴的博客
+            </a>
+        </li>
+        <li><a href="http://hexo.io/zh-cn/" target="_blank" title="Hexo">Hexo</a></li>
+        <li><a href="http://gengbiao.me" target="_blank" title="coney">coney's Blog</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer">
+    
+    <p class="copyright"> © 2015
+        
+        <a href="http://liuxing.info" target="_blank" title="liuxing">liuxing</a>
+        
+        && Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> && Theme by <a
+                href="http://gengbiao.me" target="_blank" title="coney">coney</a>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liuxing87327"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<script>
+    
+        var _bdImg = '4';
+    
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {"tsina": "1809603852", "tqq": "544841462", "t163": "liuxing87327@163.com"},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": [
+                "qzone",
+                "tsina",
+                "weixin",
+                "renren",
+                "tqq",
+                "tieba",
+                "douban",
+                "sqq",
+                "diandian",
+                "huaban",
+                "youdao",
+                "mail",
+                "ty",
+                "fbook",
+                "twi",
+                "linkedin",
+                "copy",
+                "print"
+            ],
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "slide": {
+            "type": "slide",
+            "bdImg": _bdImg,
+            "bdPos": "right",
+            "bdTop": "350"
+        },
+        "image": {
+            "viewList": [
+                "weixin",
+                "qzone",
+                "tsina",
+                "renren",
+                "douban",
+                "tqq"
+            ],
+            "viewText": "分享：",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": [
+                "weixin",
+                "qzone",
+                "tsina",
+                "renren",
+                "douban",
+                "tqq"
+            ]
+        }
+    };
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+
+<!--close baidu_analytics, using asyn baidu_analytics in head.ejs-->
+
+
+
+
+<div style="display:none;">
+    <script src="http://s11.cnzz.com/z_stat.php?id=1255357079&web_id=1255357079" language="JavaScript"></script>
+</div>
+
+  </body>
+</html>
+
