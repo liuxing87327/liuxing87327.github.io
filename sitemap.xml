@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://liuxing.info/2015/06/17/Tomcat%E7%9A%84APR%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2015-06-16T17:14:45.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://liuxing.info/2015/06/16/linux%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98/</loc>
     <lastmod>2015-06-16T17:09:16.000Z</lastmod>
   </url>
@@ -9,11 +14,6 @@
   <url>
     <loc>http://liuxing.info/2015/06/17/linux%E7%BB%9F%E8%AE%A1%E5%86%85%E5%AD%98%E5%9D%97/</loc>
     <lastmod>2015-06-16T17:05:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://liuxing.info/2015/06/17/Tomcat%E7%9A%84APR%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2015-06-16T17:01:35.000Z</lastmod>
   </url>
   
   <url>

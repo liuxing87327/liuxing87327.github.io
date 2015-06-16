@@ -55,7 +55,7 @@
     <link href="http://liuxing.info/2015/06/17/Tomcat%E7%9A%84APR%E4%BC%98%E5%8C%96/"/>
     <id>http://liuxing.info/2015/06/17/Tomcat的APR优化/</id>
     <published>2015-06-16T16:53:00.000Z</published>
-    <updated>2015-06-16T17:01:35.000Z</updated>
+    <updated>2015-06-16T17:14:45.000Z</updated>
     <content type="html"><![CDATA[<p><em>什么是APR？</em></p>
 <blockquote><p>Tomcat可以使用APR来提供超强的可伸缩性和性能，更好地集成本地服务器技术。</p>
 <p>APR(Apache Portable Runtime)是一个高可移植库，它是Apache HTTP Server 2.x的核心。</p>
@@ -90,7 +90,7 @@ export <span class="constant">LD_LIBRARY_PATH=</span><span class="variable">$LD_
     
       <category term="APR" scheme="http://liuxing.info/tags/APR/"/>
     
-      <category term="Tomcat" scheme="http://liuxing.info/tags/Tomcat/"/>
+      <category term="tomcat" scheme="http://liuxing.info/tags/tomcat/"/>
     
       <category term="系统配置" scheme="http://liuxing.info/categories/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/"/>
     
