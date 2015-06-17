@@ -94,6 +94,21 @@
 
   <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
   
+    <a href="/2015/06/18/Spring Cache使用/" title="Spring Cache使用" itemprop="url">
+  
+      <time datetime="2015-06-17T16:27:00.000Z" itemprop="datePublished">2015-06-18</time>
+    <h1 itemprop="name">Spring Cache使用</h1>
+    
+     
+           <p itemprop="description" >记录下自己项目在用的Spring Cache的使用方式。Spring的抽象已经做得够好了，适合于大多数场景，非常复杂的就需要自己AOP实现了。Spring官网的文档挺不错的，但是对Cache这块的介绍不是很详细，结合网上大牛的博文，汇总下文。
+缓存概念缓存简介缓存，我的理解是：让</p>
+        
+    
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
+  
     <a href="/2015/06/17/linux统计内存块/" title="linux统计内存块" itemprop="url">
   
       <time datetime="2015-06-16T17:02:00.000Z" itemprop="datePublished">2015-06-17</time>
@@ -252,22 +267,6 @@ RestTemplate是Spring提供的用于访问Rest服务的客户端，RestTemplate�
   </a>
 </section>
 
-  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
-  
-    <a href="/2015/04/21/使用spring4的websocket支持/" title="使用spring4的websocket支持" itemprop="url">
-  
-      <time datetime="2015-04-20T16:48:00.000Z" itemprop="datePublished">2015-04-21</time>
-    <h1 itemprop="name">使用spring4的websocket支持</h1>
-    
-     
-           <p itemprop="description" >J2EE7版（JSR-356）http://liuxing.info/2015/02/09/websocket-demo
-相关依赖请参考上文，spring需要4.x
-websocket处理器import org.apache.commons.collections.MapUtil</p>
-        
-    
-  </a>
-</section>
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -301,7 +300,7 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
 	<p class="asidetitle">分类</p>
 		<ul>
 		
-			<li><a href="/categories/Java/" title="Java">Java<sup>11</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>12</sup></a></li>
 		
 			<li><a href="/categories/书摘/" title="书摘">书摘<sup>2</sup></a></li>
 		
@@ -328,6 +327,8 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
 		
 			<li><a href="/tags/CNZZ/" title="CNZZ">CNZZ<sup>1</sup></a></li>
 		
+			<li><a href="/tags/Cache/" title="Cache">Cache<sup>1</sup></a></li>
+		
 			<li><a href="/tags/DNSPod/" title="DNSPod">DNSPod<sup>1</sup></a></li>
 		
 			<li><a href="/tags/GIT/" title="GIT">GIT<sup>1</sup></a></li>
@@ -350,7 +351,7 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
 		
 			<li><a href="/tags/RestTemplate/" title="RestTemplate">RestTemplate<sup>1</sup></a></li>
 		
-			<li><a href="/tags/Spring/" title="Spring">Spring<sup>3</sup></a></li>
+			<li><a href="/tags/Spring/" title="Spring">Spring<sup>4</sup></a></li>
 		
 			<li><a href="/tags/TWR/" title="TWR">TWR<sup>1</sup></a></li>
 		
@@ -360,8 +361,6 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
 		
 			<li><a href="/tags/jdk/" title="jdk">jdk<sup>1</sup></a></li>
 		
-			<li><a href="/tags/jmagick/" title="jmagick">jmagick<sup>2</sup></a></li>
-		
 		</ul>
 </div>
 
@@ -370,7 +369,7 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 17.5px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a>
+       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 13.33px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/tomcat/" style="font-size: 13.33px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 13.33px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 13.33px;">windows</a> <a href="/tags/地图/" style="font-size: 16.67px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a>
     </div>
   </div>
 
@@ -417,6 +416,9 @@ websocket处理器import org.apache.commons.collections.MapUtil</p>
             <a href="http://www.ruanyifeng.com/blog/" target="_blank">
                 阮一峰的网络日志
             </a>
+        </li>
+        <li>
+            <a href="http://jinnianshilongnian.iteye.com/" target="_blank">开涛的博客</a>
         </li>
         <li>
             <a href="http://kuang.io" target="_blank">
