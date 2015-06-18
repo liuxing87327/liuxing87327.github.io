@@ -1402,6 +1402,9 @@ section.comment {
   line-height: 1em;
   font-size: 0.8em;
   float: right;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #c5c8c6;
 }
 #toc .toc {
   padding: 0;
@@ -2068,13 +2071,16 @@ footer {
 }
 .article-content pre,
 .article-content .highlight {
-  background: #4d4d4c;
+  background: #eee;
   margin: 0.5em 0;
   padding: 1em 2%;
   overflow: auto;
   color: #c5c8c6;
   line-height: 1.5;
   font-size: 92%;
+  border: 1px solid #c5c8c6;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
 }
 .article-content .highlight .gutter pre,
 .article-content .gist .gist-file .gist-data .line-numbers {
@@ -2095,6 +2101,7 @@ footer {
   border: none;
   margin: 0;
   padding: 0;
+  color: #888;
 }
 .article-content .highlight table {
   margin: 0;
@@ -2130,7 +2137,7 @@ footer {
 }
 .article-content .gist {
   margin: 0.5em 0;
-  background: #4d4d4c;
+  background: #eee;
   padding: 1em 2%;
 }
 .article-content .gist .gist-file {
@@ -2156,7 +2163,7 @@ footer {
   border: none;
 }
 .article-content .gist .gist-file .gist-meta {
-  background: #4d4d4c;
+  background: #eee;
   color: #969896;
   font: 0.85em "Georgia", serif;
   padding: 0;
