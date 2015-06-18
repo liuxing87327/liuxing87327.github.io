@@ -534,15 +534,18 @@ import java.i">
 
 <script type="text/javascript">
     var duoshuoQuery = {short_name: "liuxing87327"};
-    (function () {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';
-        ds.async = true;
-        ds.src = '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
+
+    $(document).ready(function () {
+        (function () {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0]
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    });
 </script>
 
 
@@ -609,7 +612,7 @@ import java.i">
             "type": "slide",
             "bdImg": _bdImg,
             "bdPos": "right",
-            "bdTop": "350"
+            "bdTop": "250"
         },
         "image": {
             "viewList": [
@@ -621,7 +624,7 @@ import java.i">
                 "tqq"
             ],
             "viewText": "分享：",
-            "viewSize": "16"
+            "viewSize": "24"
         },
         "selectShare": {
             "bdContainerClass": null,
@@ -637,10 +640,6 @@ import java.i">
     };
     with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-
-
-<!--close baidu_analytics, using asyn baidu_analytics in head.ejs-->
-
 
 
 
