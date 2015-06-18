@@ -1071,6 +1071,7 @@ footer.article-footer {
 .article-share {
   float: right;
   width: 100%;
+  margin-top: 10px;
 }
 @media only screen and (min-width: 568px) {
   .article-share {
@@ -1240,6 +1241,9 @@ footer.article-footer {
   -ms-filter: none;
   filter: none;
   visibility: visible;
+}
+.ds-share-right {
+  float: right;
 }
 .article-tags,
 .article-categories {
