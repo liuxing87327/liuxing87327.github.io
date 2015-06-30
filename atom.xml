@@ -597,11 +597,11 @@ export PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">
   </entry>
   
   <entry>
-    <title><![CDATA[RestTemplate最佳实践]]></title>
-    <link href="http://liuxing.info/2015/05/21/RestTemplate%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"/>
-    <id>http://liuxing.info/2015/05/21/RestTemplate最佳实践/</id>
+    <title><![CDATA[RestTemplate实践]]></title>
+    <link href="http://liuxing.info/2015/05/21/RestTemplate%E5%AE%9E%E8%B7%B5/"/>
+    <id>http://liuxing.info/2015/05/21/RestTemplate实践/</id>
     <published>2015-05-21T02:56:27.000Z</published>
-    <updated>2015-06-17T01:32:55.000Z</updated>
+    <updated>2015-06-30T12:11:02.000Z</updated>
     <content type="html"><![CDATA[<p><em>什么是RestTemplate？</em></p>
 <blockquote>
 <p>RestTemplate是Spring提供的用于访问Rest服务的客户端，RestTemplate提供了多种便捷访问远程Http服务的方法，能够大大提高客户端的编写效率。<br>调用RestTemplate的默认构造函数，RestTemplate对象在底层通过使用java.net包下的实现创建HTTP 请求，可以通过使用ClientHttpRequestFactory指定不同的HTTP请求方式。<br>ClientHttpRequestFactory接口主要提供了两种实现方式</p>
