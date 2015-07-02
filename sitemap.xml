@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://liuxing.info/about/index.html</loc>
+    <lastmod>2015-07-02T03:50:16.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://liuxing.info/2015/06/18/Spring%20Cache%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2015-06-30T12:15:16.000Z</lastmod>
   </url>
@@ -52,17 +57,7 @@
   </url>
   
   <url>
-    <loc>http://liuxing.info/2012/08/16/%E8%B0%B7%E6%AD%8C%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%20/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://liuxing.info/2012/08/16/%E5%BC%95%E5%85%A5%E5%85%AC%E5%85%B1%E5%A4%B4%E9%83%A8%E6%97%B6%EF%BC%8C%E6%8E%A7%E5%88%B6%E5%BC%95%E5%85%A5js%E3%80%81css%E3%80%81title/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://liuxing.info/2013/05/23/%E4%BD%BF%E7%94%A8jmagick%E5%B0%86CMYK%E8%BD%AC%E6%8D%A2%E4%B8%BARGB/</loc>
+    <loc>http://liuxing.info/2015/04/21/spring4%E4%B8%8D%E5%85%BC%E5%AE%B9ibatis%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%20/</loc>
     <lastmod>2015-06-16T13:47:13.000Z</lastmod>
   </url>
   
@@ -72,12 +67,27 @@
   </url>
   
   <url>
+    <loc>http://liuxing.info/2013/05/23/%E4%BD%BF%E7%94%A8jmagick%E5%B0%86CMYK%E8%BD%AC%E6%8D%A2%E4%B8%BARGB/</loc>
+    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://liuxing.info/2015/02/09/websocket-demo/</loc>
     <lastmod>2015-06-16T13:47:13.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://liuxing.info/2015/04/21/spring4%E4%B8%8D%E5%85%BC%E5%AE%B9ibatis%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%20/</loc>
+    <loc>http://liuxing.info/2012/08/16/%E8%B0%B7%E6%AD%8C%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%20/</loc>
+    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://liuxing.info/2013/12/20/%E5%9C%A8windows%E5%92%8Clinux%E4%B8%8A%E5%AE%89%E8%A3%85ImageMagick%E4%B8%8EJmagick/</loc>
+    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://liuxing.info/2012/08/16/%E5%BC%95%E5%85%A5%E5%85%AC%E5%85%B1%E5%A4%B4%E9%83%A8%E6%97%B6%EF%BC%8C%E6%8E%A7%E5%88%B6%E5%BC%95%E5%85%A5js%E3%80%81css%E3%80%81title/</loc>
     <lastmod>2015-06-16T13:47:13.000Z</lastmod>
   </url>
   
@@ -93,11 +103,6 @@
   
   <url>
     <loc>http://liuxing.info/2015/04/21/java%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%A1%E7%AE%97%E4%B8%A4%E4%B8%AA%E5%9D%90%E6%A0%87%E7%9A%84%E8%B7%9D%E7%A6%BB/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://liuxing.info/2013/12/20/%E5%9C%A8windows%E5%92%8Clinux%E4%B8%8A%E5%AE%89%E8%A3%85ImageMagick%E4%B8%8EJmagick/</loc>
     <lastmod>2015-06-16T13:47:13.000Z</lastmod>
   </url>
   
@@ -174,11 +179,6 @@
   <url>
     <loc>http://liuxing.info/404.html</loc>
     <lastmod>2015-06-10T07:08:35.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://liuxing.info/about/index.html</loc>
-    <lastmod>2015-06-09T18:38:28.000Z</lastmod>
   </url>
   
   <url>
