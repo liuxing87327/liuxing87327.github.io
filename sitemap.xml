@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://liuxing.info/2015/07/05/Spring%20JMS%E7%B2%97%E8%AF%91/</loc>
+    <lastmod>2015-07-05T13:37:28.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://liuxing.info/about/index.html</loc>
     <lastmod>2015-07-02T03:50:16.000Z</lastmod>
   </url>
@@ -57,11 +62,6 @@
   </url>
   
   <url>
-    <loc>http://liuxing.info/2015/04/21/spring4%E4%B8%8D%E5%85%BC%E5%AE%B9ibatis%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%20/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://liuxing.info/2015/04/21/%E4%BD%BF%E7%94%A8spring4%E7%9A%84websocket%E6%94%AF%E6%8C%81/</loc>
     <lastmod>2015-06-16T13:47:13.000Z</lastmod>
   </url>
@@ -73,6 +73,11 @@
   
   <url>
     <loc>http://liuxing.info/2015/02/09/websocket-demo/</loc>
+    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://liuxing.info/2015/04/21/spring4%E4%B8%8D%E5%85%BC%E5%AE%B9ibatis%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%20/</loc>
     <lastmod>2015-06-16T13:47:13.000Z</lastmod>
   </url>
   
@@ -92,12 +97,12 @@
   </url>
   
   <url>
-    <loc>http://liuxing.info/2012/08/16/%E4%BD%BF%E7%94%A8pinyin4j%E5%B0%86%E4%B8%AD%E6%96%87%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%8B%BC%E9%9F%B3/</loc>
+    <loc>http://liuxing.info/2015/04/21/%E8%AE%A1%E7%AE%97%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85/</loc>
     <lastmod>2015-06-16T13:47:13.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://liuxing.info/2015/04/21/%E8%AE%A1%E7%AE%97%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85/</loc>
+    <loc>http://liuxing.info/2012/08/16/%E4%BD%BF%E7%94%A8pinyin4j%E5%B0%86%E4%B8%AD%E6%96%87%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%8B%BC%E9%9F%B3/</loc>
     <lastmod>2015-06-16T13:47:13.000Z</lastmod>
   </url>
   
