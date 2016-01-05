@@ -5,7 +5,7 @@
   <subtitle><![CDATA[青春须早为,岂能长少年！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://liuxing.info//"/>
-  <updated>2015-10-12T06:53:48.000Z</updated>
+  <updated>2016-01-05T03:50:48.000Z</updated>
   <id>http://liuxing.info//</id>
   
   <author>
@@ -14,6 +14,326 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Tomcat-Jdbc-Pool参数说明]]></title>
+    <link href="http://liuxing.info/2016/01/05/Tomcat-Jdbc-Pool%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/"/>
+    <id>http://liuxing.info/2016/01/05/Tomcat-Jdbc-Pool参数说明/</id>
+    <published>2016-01-05T03:36:00.000Z</published>
+    <updated>2016-01-05T03:50:48.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="介绍">介绍</h2><p>Tomcat 在 7.0 以前的版本都是使用commons-dbcp做为连接池的实现，但是DBCP存在一些问题： </p>
+<ul>
+<li>DBCP 是单线程的，为了保证线程安全会锁整个连接池 </li>
+<li>DBCP 性能不佳</li>
+<li>DBCP 太复杂，超过60个类，发展滞后。 </li>
+</ul>
+<p>因此，通常J2EE中还会使用其它的高性能连接池，如C3P0，还有阿里系的druid等。<br>为此，Tomcat 从 7.0 开始引入一个新的模块： Tomcat Jdbc Pool<br>Tomcat Jdbc Pool 近乎兼容 DBCP，性能更高 </p>
+<ul>
+<li>异步方式获取连接 </li>
+<li>Tomcat Jdbc Pool是Tomcat的一个模块，基于Tomcat-Juli，使用Tomcat的日志框架 </li>
+<li>使用 javax.sql.PooledConnection 接口获取连接 </li>
+<li>支持高并发应用环境 </li>
+<li>超简单，核心文件只有8个，比 c3p0 还少 </li>
+<li>更好的空闲连接处理机制 </li>
+<li>支持 JMX </li>
+<li>支持 XA Connection。 </li>
+<li>Tomcat Jdbc Pool 可在 Tomcat 中直接使用，也可以在独立的应用中使用。 </li>
+</ul>
+<h2 id="属性">属性</h2><p>通用属性</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性名</th>
+<th style="text-align:left">描述(DBCP/Tomcat jdbc-pool 差别 )</th>
+<th style="text-align:left">DBCP默认值</th>
+<th style="text-align:left">jdbc-pool默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">用户名</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">密码</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">url</td>
+<td style="text-align:left">建立连接的URL</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">driverClassName</td>
+<td style="text-align:left">驱动的完整有效的java类名</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">connectionProperties</td>
+<td style="text-align:left">(String) 当建立新连接时被发送给JDBC 驱动的连接参数，格式必须是 [propertyName=property;]<br>*注意 ：参数user/password 将被明确传递，所以不需要包括在这里。</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">defaultAutoCommit</td>
+<td style="text-align:left">(boolean) 连接池创建的连接的默认的auto-commit 状态</td>
+<td style="text-align:left">true</td>
+<td style="text-align:left">driver default</td>
+</tr>
+<tr>
+<td style="text-align:left">defaultReadOnly</td>
+<td style="text-align:left">(boolean) 连接池创建的连接的默认的read-only 状态。 如果没有设置则setReadOnly 方法将不会被调用。 ( 某些驱动不支持只读模式， 比如：Informix)</td>
+<td style="text-align:left">driver default</td>
+<td style="text-align:left">driver default</td>
+</tr>
+<tr>
+<td style="text-align:left">defaultTransactionIsolation</td>
+<td style="text-align:left">(String) 连接池创建的连接的默认的TransactionIsolation 状态。 下面列表当中的某一个： ( 参考javadoc) <br>NONE <br>READ_COMMITTED <br>READ_UNCOMMITTED <br>REPEATABLE_READ <br>SERIALIZABLE</td>
+<td style="text-align:left">driver default</td>
+<td style="text-align:left">driver default</td>
+</tr>
+<tr>
+<td style="text-align:left">defaultCatalog</td>
+<td style="text-align:left">(String) 连接池创建的连接的默认的catalog</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">driver default</td>
+</tr>
+<tr>
+<td style="text-align:left">initialSize</td>
+<td style="text-align:left">(int) 初始化连接： 连接池启动时创建的初始化连接数量，1。2 版本后支持</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">maxActive</td>
+<td style="text-align:left">(int) 最大活动连接： 连接池在同一时间能够分配的最大活动连接的数量， 如果设置为非正数则表示不限制</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">100</td>
+</tr>
+<tr>
+<td style="text-align:left">maxIdle</td>
+<td style="text-align:left">(int) 最大空闲连接： 连接池中容许保持空闲状态的最大连接数量， 超过的空闲连接将被释放， 如果设置为负数表示不限制 <br><code>如果启用，将定期检查限制连接，如果空闲时间超过minEvictableIdleTimeMillis 则释放连接 （ 参考testWhileIdle ）</code></td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">与maxActive相同</td>
+</tr>
+<tr>
+<td style="text-align:left">minIdle</td>
+<td style="text-align:left">(int) 最小空闲连接： 连接池中容许保持空闲状态的最小连接数量， 低于这个数量将创建新的连接， 如果设置为0 则不创建 <br><code>如果连接验证失败将缩小这个值（ 参考testWhileIdle ）</code></td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">与initialSize 相同</td>
+</tr>
+<tr>
+<td style="text-align:left">maxWait</td>
+<td style="text-align:left">(int) 最大等待时间： 当没有可用连接时， 连接池等待连接被归还的最大时间( 以毫秒计数)， 超过时间则抛出异常， 如果设置为-1 表示无限等待</td>
+<td style="text-align:left">无限</td>
+<td style="text-align:left">30000（30秒）</td>
+</tr>
+<tr>
+<td style="text-align:left">validationQuery</td>
+<td style="text-align:left">(String) SQL 查询， 用来验证从连接池取出的连接， 在将连接返回给调用者之前。 如果指定， 则查询必须是一个SQL SELECT 并且必须返回至少一行记录 <br> <code>查询不必返回记录，但这样将不能抛出SQL异常</code></td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">testOnBorrow</td>
+<td style="text-align:left">(boolean) 指明是否在从池中取出连接前进行检验， 如果检验失败， 则从池中去除连接并尝试取出另一个。注意： 设置为true 后如果要生效，validationQuery 参数必须设置为非空字符串 <br> <code>参考validationInterval以获得更有效的验证</code></td>
+<td style="text-align:left">true</td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">testOnReturn</td>
+<td style="text-align:left">(boolean) 指明是否在归还到池中前进行检验 注意： 设置为true 后如果要生效，validationQuery 参数必须设置为非空字符串</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">testWhileIdle</td>
+<td style="text-align:left">(boolean) 指明连接是否被空闲连接回收器( 如果有) 进行检验。 如果检测失败， 则连接将被从池中去除。注意： 设置为true 后如果要生效，validationQuery 参数必须设置为非空字符串</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">timeBetweenEvictionRunsMillis</td>
+<td style="text-align:left">(int) 在空闲连接回收器线程运行期间休眠的时间值， 以毫秒为单位。 如果设置为非正数， 则不运行空闲连接回收器线程 <br> <code>这个值不应该小于1秒，它决定线程多久验证连接或丢弃连接</code></td>
+<td style="text-align:left">-1</td>
+<td style="text-align:left">5000（5秒）</td>
+</tr>
+<tr>
+<td style="text-align:left">numTestsPerEvictionRun</td>
+<td style="text-align:left">(int) 在每次空闲连接回收器线程( 如果有) 运行时检查的连接数量</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">未使用</td>
+</tr>
+<tr>
+<td style="text-align:left">minEvictableIdleTimeMillis</td>
+<td style="text-align:left">连接在池中保持空闲而不被空闲连接回收器线程( 如果有) 回收的最小时间值，单位毫秒</td>
+<td style="text-align:left">1000 <em> 60 </em> 30（30分钟）</td>
+<td style="text-align:left">60000（60秒）</td>
+</tr>
+<tr>
+<td style="text-align:left">poolPreparedStatements</td>
+<td style="text-align:left">(boolean) 开启池的prepared statement 池功能</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">未使用</td>
+</tr>
+<tr>
+<td style="text-align:left">maxOpenPreparedStatements</td>
+<td style="text-align:left">(int)statement 池能够同时分配的打开的statements 的最大数量， 如果设置为0 表示不限制</td>
+<td style="text-align:left">不限制</td>
+<td style="text-align:left">未使用</td>
+</tr>
+<tr>
+<td style="text-align:left">accessToUnderlyingConnectionAllowed</td>
+<td style="text-align:left">(boolean) 控制PoolGuard 是否容许获取底层连接 <br> <code>jdbc-pool中未使用此属性；可以通过调用连接的unwrap方法取得控制权。参考javax。sql。DataSource接口，通过反射调用getConnection方法，或强制转换为javax。sql。PooledConnection对象。</code></td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">未使用</td>
+</tr>
+<tr>
+<td style="text-align:left">removeAbandoned</td>
+<td style="text-align:left">(boolean) 标记是否删除泄露的连接， 如果他们超过了removeAbandonedTimout 的限制。 如果设置为true， 连接被认为是被泄露并且可以被删除， 如果空闲时间超过removeAbandonedTimeout。 设置为true 可以为写法糟糕的没有关闭连接的程序修复数据库连接。<br> <code>参考logAbandoned</code></td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">removeAbandonedTimeout</td>
+<td style="text-align:left">(int) 泄露的连接可以被删除的超时值， 单位秒 <br> 应设置为应用中查询执行最长的时间</td>
+<td style="text-align:left">300</td>
+<td style="text-align:left">60</td>
+</tr>
+<tr>
+<td style="text-align:left">logAbandoned</td>
+<td style="text-align:left">(boolean) 标记当Statement 或连接被泄露时是否打印程序的stack traces 日志。被泄露的Statements 和连接的日志添加在每个连接打开或者生成新的Statement， 因为需要生成stack trace 。</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">false</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Tomcat jdbc-pool 新增属性</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性名</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">validatorClassName</td>
+<td style="text-align:left">(String)实现org.apache.tomcat.jdbc.pool.Validator接口的类名，必须存在默认或明确的无参构造方 法。将建立一个指定类的实例作为验证器，用来代替执行查询的连接验证。例如：com.mycompany.project.SimpleValidator。</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">initSQL</td>
+<td style="text-align:left">(String) 当连接第一次建立时执行的SQL</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">jdbcInterceptors</td>
+<td style="text-align:left">(String)（jdbc拦截器——jdbc-pool的高级扩展属 性）用分号分隔的、继承org.apache.tomcat.jdbc.pool.JdbcInterceptor的类名列表。这些拦截器将被插入到对 java.sql.Connection操作之前的拦截器链上。<br>预制的拦截器有：<br>org.apache.tomcat.jdbc.pool.interceptor.ConnectionState - 追踪自动提交、只读状态、catalog和事务隔离等级等状态。（keeps track of auto commit， read only， catalog and transaction isolation level.）org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer - 追踪打开的statement，当连接被归还时关闭它们。（keeps track of opened statements， and closes them when the connection is returned to the pool.）<br>更多预制拦截器详细描述请参见JDBC拦截器部分</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">validationInterval</td>
+<td style="text-align:left">(long) 避免过度验证，保证验证不超过这个频率——以毫秒为单位。如果一个连接应该被验证，但上次验证未达到指定间隔，将不再次验证。</td>
+<td style="text-align:left">30000（30秒）</td>
+</tr>
+<tr>
+<td style="text-align:left">jmxEnabled</td>
+<td style="text-align:left">(boolean) 是否将连接注册到JMX</td>
+<td style="text-align:left">true</td>
+</tr>
+<tr>
+<td style="text-align:left">fairQueue</td>
+<td style="text-align:left">(boolean) 如果被设为true ，getConnection 方法将被以先进先出的方式对待。此属性使用 org.apache.tomcat.jdbc.pool.FairBlockingQueue 实现闲置连接列表。<br>如果需要使用异步连接回收，这个标记是必须的。<br>这个标记确保线程取得连接的顺序和他们调用getConnection 方法的顺序是相同的。<br>在性能测试中，这个标记对锁和锁等待有非常大的影响。当fairQueue=true ，将有一个依赖于操作系统的线程作为决定线程。如果是Linux 系统（ 系统属性os.name=Linux ）可以在线程池的类加载之前设置系统属性 org.apache.tomcat.jdbc.pool.FairBlockingQueue.ignoreOS=true 关闭Linux 特定行为但仍然使用公平队列</td>
+<td style="text-align:left">true</td>
+</tr>
+<tr>
+<td style="text-align:left">abandonWhenPercentageFull</td>
+<td style="text-align:left">(int)正在被使用的连接超过这个百分比以前被丢弃的连接不会被断开或报告。这个值应被设为0-100之间。默认值为0，意味着达到 removeAbandonedTimeout 时将被尽快关闭。</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">maxAge</td>
+<td style="text-align:left">(long)保持连接的最大毫秒数。当一个连接被归还时，连接池将检查是否满足：现在时间-连接时长&gt;maxAge，如果条件满足，连接将被关闭而不是回到池中。默认值为0，标识禁用该功能。</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">useEquals</td>
+<td style="text-align:left">(boolean)如果希望ProxyConnection类使用String.equals方法对比方法名，设为true；否则将使用==判断。这个属性不会影响单独配置的拦截器。</td>
+<td style="text-align:left">true</td>
+</tr>
+<tr>
+<td style="text-align:left">suspectTimeout</td>
+<td style="text-align:left">(int)以秒为单位的超时时间（怀疑超时）。类似 removeAbandonedTimeout，但不会将连接丢弃甚至关闭，如果logAbandoned为true，则 只是记录一个警告。如果这个值小于等于0，不会有怀疑超时检测被执行。怀疑检测只有当超时时间大于0并且连接未丢弃，或者丢弃检测被禁用的情况下才占用空间。如果一个连接被怀疑，将记录一条警告消息，并发送一个JMX通知。</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">rollbackOnReturn</td>
+<td style="text-align:left">(boolean)如果autoCommit==false，当连接被归还时，通过调用连接的rollback方法中断事务。</td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">commitOnReturn</td>
+<td style="text-align:left">(boolean)如果autoCommit==false，当连接被归还时，通过调用连接的commit方法完成事务。如果rollbackOnReturn==ture，这个属性将被忽略。</td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">alternateUsernameAllowed</td>
+<td style="text-align:left">(boolean)为了提高性能，默认情况下，jdbc-pool将忽略 DataSource.getConnection(username,password)调用，直接返回一个以已有的全局配置的用户名和密码创建的连 接。连接池仍然可以用不同的用户名和密码，但已经通过旧的用户名和密码创建的连接将被关闭，然后重新以新的用户名和密码连接。这样连接池将以全局级别管理 连接数，而不是schema级别。设置这个属性为true来启用 DataSource.getConnection(username,password)方法描述的行为。<br> 这个属性为bug 50025 增加。</td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">dataSource</td>
+<td style="text-align:left">(javax.sql.DataSource)向连接池注入一个数据源，连接池将使用这个数据源索取连接，而不是通过java.sql.Driver接口建立。当您希望池化XA连接或者使用数据源而不是url时，这个属性非常有用。</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">dataSourceJNDI</td>
+<td style="text-align:left">(String)用来建立数据连接的JNDI名称。参考dataSource属性。</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">useDisposableConnectionFacade</td>
+<td style="text-align:left">(boolean)如果您希望在连接上建立一道屏障防止连接关闭之后被重新使用，设置这个属性为true。这个属性用来预防线程保持已关闭连接的引用，并在上面执行查询动作。</td>
+<td style="text-align:left">true</td>
+</tr>
+<tr>
+<td style="text-align:left">logValidationErrors</td>
+<td style="text-align:left">(boolean)如果设置为true，将在验证相位时向日志文件写入错误。如果值为true，错误将被记录为SEVER。默认值是false以向后兼容。</td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">propagateInterruptState</td>
+<td style="text-align:left">(boolean)设置这个属性为true，可以传播一个被中断的线程（还没有清除中断状态）的中断状态。默认值为false以向后兼容。</td>
+<td style="text-align:left">false</td>
+</tr>
+</tbody>
+</table>
+<h2 id="样例">样例</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">bean</span> <span class="attribute">id</span>=<span class="value">"parentDataSource"</span> <span class="attribute">abstract</span>=<span class="value">"true"</span> <span class="attribute">class</span>=<span class="value">"org.apache.tomcat.jdbc.pool.DataSource"</span> <span class="attribute">destroy-method</span>=<span class="value">"close"</span></span><br><span class="line">          <span class="attribute">p:maxWait</span>=<span class="value">"5000"</span></span><br><span class="line">          <span class="attribute">p:removeAbandoned</span>=<span class="value">"true"</span></span><br><span class="line">          <span class="attribute">p:removeAbandonedTimeout</span>=<span class="value">"180"</span></span><br><span class="line">          <span class="attribute">p:connectionProperties</span>=<span class="value">"clientEncoding=UTF-8"</span></span><br><span class="line">          <span class="attribute">p:validationQuery</span>=<span class="value">"SELECT 1"</span></span><br><span class="line">          <span class="attribute">p:validationQueryTimeout</span>=<span class="value">"1"</span></span><br><span class="line">          <span class="attribute">p:validationInterval</span>=<span class="value">"30000"</span></span><br><span class="line">          <span class="attribute">p:testOnBorrow</span>=<span class="value">"false"</span></span><br><span class="line">          <span class="attribute">p:testOnReturn</span>=<span class="value">"false"</span></span><br><span class="line">          <span class="attribute">p:testWhileIdle</span>=<span class="value">"true"</span></span><br><span class="line">          <span class="attribute">p:timeBetweenEvictionRunsMillis</span>=<span class="value">"10000"</span></span><br><span class="line">          <span class="attribute">p:minEvictableIdleTimeMillis</span>=<span class="value">"60000"</span></span><br><span class="line">          <span class="attribute">p:numTestsPerEvictionRun</span>=<span class="value">"20"</span></span><br><span class="line">          <span class="attribute">p:logAbandoned</span>=<span class="value">"false"</span></span><br><span class="line">          <span class="attribute">p:jmxEnabled</span>=<span class="value">"true"</span></span><br><span class="line">          <span class="attribute">p:defaultAutoCommit</span>=<span class="value">"true"</span>/&gt;</span></span><br><span class="line">          </span><br><span class="line"><span class="tag">&lt;<span class="title">bean</span> <span class="attribute">id</span>=<span class="value">"dataSource"</span> <span class="attribute">parent</span>=<span class="value">"parentDataSource"</span></span><br><span class="line">          <span class="attribute">p:driverClassName</span>=<span class="value">"com.microsoft.sqlserver.jdbc.SQLServerDriver"</span></span><br><span class="line">          <span class="attribute">p:url</span>=<span class="value">"jdbc:sqlserver://127.0.0.1:1433;DatabaseName=test;sendStringParametersAsUnicode=false"</span></span><br><span class="line">          <span class="attribute">p:username</span>=<span class="value">"test"</span></span><br><span class="line">          <span class="attribute">p:password</span>=<span class="value">"test"</span></span><br><span class="line">          <span class="attribute">p:initialSize</span>=<span class="value">"100"</span></span><br><span class="line">          <span class="attribute">p:maxActive</span>=<span class="value">"500"</span></span><br><span class="line">          <span class="attribute">p:maxIdle</span>=<span class="value">"100"</span></span><br><span class="line">          <span class="attribute">p:minIdle</span>=<span class="value">"50"</span> /&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="介绍">介绍</h2><p>Tomcat 在 7.0 以前的版本都是使用commons-dbcp做为连接池的实现，但是DBCP存在一些问题： </p>
+<ul>
+<li>DBCP 是单线程的，为了保证线程安全会锁整个连接池 </li>
+<li>DBCP 性能不佳<]]>
+    </summary>
+    
+      <category term="Jdbc" scheme="http://liuxing.info/tags/Jdbc/"/>
+    
+      <category term="数据源" scheme="http://liuxing.info/tags/%E6%95%B0%E6%8D%AE%E6%BA%90/"/>
+    
+      <category term="连接池" scheme="http://liuxing.info/tags/%E8%BF%9E%E6%8E%A5%E6%B1%A0/"/>
+    
+      <category term="Java" scheme="http://liuxing.info/categories/Java/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[shadowsocks科学上网]]></title>
@@ -1285,44 +1605,6 @@ export PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">
       <category term="jquery" scheme="http://liuxing.info/tags/jquery/"/>
     
       <category term="前端" scheme="http://liuxing.info/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[备忘]]></title>
-    <link href="http://liuxing.info/2015/01/01/faqs/"/>
-    <id>http://liuxing.info/2015/01/01/faqs/</id>
-    <published>2014-12-31T16:00:00.000Z</published>
-    <updated>2015-06-16T16:16:18.000Z</updated>
-    <content type="html"><![CDATA[<p>记录工作中遇到的一些小问题及解决办法，以防忘记后重头再找答案。</p>
-<h2 id="格式:">格式:</h2><p>问:Win7下 Eclipse中按”Alt+Ctrl+Down或Alt+Ctrl+Up”时，结果屏幕倒了怎么办？<br>答:是不是和其它应用的快捷键冲突了？比如Intel显卡，则可选择“图形属性”&gt;“选项和支持”，将对应快捷键换掉。参考:<a href="http://www.2cto.com/os/201201/116412.html" target="_blank" rel="external">http://www.2cto.com/os/201201/116412.html</a></p>
-<h2 id="或作为url收藏记录">或作为url收藏记录</h2><ul>
-<li>Markdown语法: <a href="http://wowubuntu.com/markdown/basic.html" target="_blank" rel="external">http://wowubuntu.com/markdown/basic.html</a><br>  马克飞象: <a href="http://maxiang.info/" target="_blank" rel="external">http://maxiang.info/</a><br>  Cmd Markdown: <a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external">https://www.zybuluo.com/mdeditor</a><br>  代码显示规范: <a href="http://hexo.chenall.net/post/code/" target="_blank" rel="external">http://hexo.chenall.net/post/code/</a></li>
-<li>Oracle现在真是恶心，下载个Java SDK还非得让登陆不可。只好再找下载地址了: <a href="http://ghaffarian.net/downloads/" target="_blank" rel="external">http://ghaffarian.net/downloads/</a>  </li>
-<li>GIT文章收藏:<br>  Git分支管理策略: <a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2012/07/git.html</a><br>  Git查看、删除、重命名远程分支和tag: <a href="http://zengrong.net/post/1746.htm" target="_blank" rel="external">http://zengrong.net/post/1746.htm</a>  </li>
-<li>Google无障碍浏览链接: <a href="https://github.com/greatfire/wiki" target="_blank" rel="external">https://github.com/greatfire/wiki</a>  </li>
-<li>在线Android等源码: <a href="http://www.grepcode.com/" target="_blank" rel="external">http://www.grepcode.com/</a>, <a href="http://androidxref.com/" target="_blank" rel="external">http://androidxref.com/</a>  </li>
-<li>Twitter University: <a href="http://www.bluemobi.cn/" target="_blank" rel="external">http://www.bluemobi.cn/</a>  </li>
-</ul>
-<h2 id="本项目使用了">本项目使用了</h2><ul>
-<li>CNZZ的网站统计服务，官网:<a href="http://cnzz.com/" target="_blank" rel="external">http://cnzz.com/</a></li>
-<li>友言的网友评论服务，官网:<a href="http://www.uyan.cc/" target="_blank" rel="external">http://www.uyan.cc/</a>  </li>
-<li>Google 的Adsense广告，官网:<a href="https://www.google.com/adsense/login/zh_CN/" target="_blank" rel="external">https://www.google.com/adsense/login/zh_CN/</a>  </li>
-</ul>
-<p>如需查看或管理网站统计、评论或广告，请自行注册帐号并修改_includes目录下相关文件。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>记录工作中遇到的一些小问题及解决办法，以防忘记后重头再找答案。</p>
-<h2 id="格式:">格式:</h2><p>问:Win7下 Eclipse中按”Alt+Ctrl+Down或Alt+Ctrl+Up”时，结果屏幕倒了怎么办？<br>答:是不是和其它应用的快捷键冲突了]]>
-    </summary>
-    
-      <category term="CNZZ" scheme="http://liuxing.info/tags/CNZZ/"/>
-    
-      <category term="GIT" scheme="http://liuxing.info/tags/GIT/"/>
-    
-      <category term="Markdown" scheme="http://liuxing.info/tags/Markdown/"/>
-    
-      <category term="其他" scheme="http://liuxing.info/categories/%E5%85%B6%E4%BB%96/"/>
     
   </entry>
   
