@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://liuxing.info/2016/01/05/Tomcat-Jdbc-Pool%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/</loc>
+    <lastmod>2016-05-05T10:58:17.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://liuxing.info/2016/03/15/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
     <lastmod>2016-03-17T08:33:00.000Z</lastmod>
   </url>
@@ -9,11 +14,6 @@
   <url>
     <loc>http://liuxing.info/2016/01/31/RabbitMQ%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89%E5%AE%89%E8%A3%85%E7%AF%87/</loc>
     <lastmod>2016-01-31T05:23:50.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://liuxing.info/2016/01/05/Tomcat-Jdbc-Pool%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/</loc>
-    <lastmod>2016-01-05T03:50:48.000Z</lastmod>
   </url>
   
   <url>
