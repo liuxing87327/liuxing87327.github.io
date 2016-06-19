@@ -94,6 +94,22 @@
 
   <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
   
+    <a href="/2016/06/18/使用SDKMAN管理开发环境/" title="使用SDKMAN管理开发环境" itemprop="url">
+  
+      <time datetime="2016-06-17T20:03:00.000Z" itemprop="datePublished">2016-06-18</time>
+    <h1 itemprop="name">使用SDKMAN管理开发环境</h1>
+    
+     
+           <p itemprop="description" >SDKMAN 是用来在类Unix 系统中管理多个版本的开发环境的工具。提供命令行接口来安装、切换、删除、列出候选版本。
+githubsdkman/sdkman-cli
+前戏###缘由写这篇博文的原因是因为最近在使用GVM(SDKMAN的前身)管理版本的时候，一直提示我一个异常“g</p>
+        
+    
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
+  
     <a href="/2016/03/15/String、StringBuffer、StringBuilder的区别/" title="String、StringBuffer、StringBuilder的区别" itemprop="url">
   
       <time datetime="2016-03-14T19:14:00.000Z" itemprop="datePublished">2016-03-15</time>
@@ -114,9 +130,10 @@
     <h1 itemprop="name">RabbitMQ使用（一）安装篇</h1>
     
      
-           <p itemprop="description" >安装erlang语言环境安装依赖文件
+           <p itemprop="description" >##安装erlang语言环境
+安装依赖文件
 
-yum install ncurses-devel  yum -y install openssl  yum -y install ssl  yum -y install xmlto  yum -y install python-simpl</p>
+yum install ncurses-devel  yum -y install openssl  yum -y install ssl  yum -y install xmlto  yum -y install python-si</p>
         
     
   </a>
@@ -130,13 +147,13 @@ yum install ncurses-devel  yum -y install openssl  yum -y install ssl  yum -y in
     <h1 itemprop="name">Tomcat-Jdbc-Pool参数说明</h1>
     
      
-           <p itemprop="description" >介绍Tomcat 在 7.0 以前的版本都是使用commons-dbcp做为连接池的实现，但是DBCP存在一些问题： 
+           <p itemprop="description" >##介绍Tomcat 在 7.0 以前的版本都是使用commons-dbcp做为连接池的实现，但是DBCP存在一些问题： 
 
 DBCP 是单线程的，为了保证线程安全会锁整个连接池 
 DBCP 性能不佳
 DBCP 太复杂，超过60个类，发展滞后。 
 
-因此，通常J2EE中还会使用其它的</p>
+因此，通常J2EE中还会使用其</p>
         
     
   </a>
@@ -168,10 +185,10 @@ DBCP 太复杂，超过60个类，发展滞后。
      
            <p itemprop="description" >记录一下今天碰到的问题
 
-前言对于经常跟网络编程打交道的你来说，并不是你的每次请求，服务端都会给你想要的结果。重试机制虽然并不能解决这种情况，但是却可以大大减少这种情况的发生。
-缘由最近几天发现系统里面的solr数据频繁的出现数据同步不及时，统计数据以及分析日志后发现
+##前言对于经常跟网络编程打交道的你来说，并不是你的每次请求，服务端都会给你想要的结果。重试机制虽然并不能解决这种情况，但是却可以大大减少这种情况的发生。
+##缘由最近几天发现系统里面的solr数据频繁的出现数据同步不及时，统计数据以及分析日志后发现
 
-近期合并</p>
+</p>
         
     
   </a>
@@ -185,8 +202,9 @@ DBCP 太复杂，超过60个类，发展滞后。
     <h1 itemprop="name">Spring JMS粗译</h1>
     
      
-           <p itemprop="description" >24.1介绍Spring提供了JMS集成框架简化了JMS API的使用，像Spring JDBC API的使用。
-JMS的功能大致上分为两块，叫做消息发送和消息监听。JmsTemplate 用于发送消息和同步消息监听。和Java EE的事件驱动Bean风格类似，对于异步接收消息，</p>
+           <p itemprop="description" >##24.1介绍
+Spring提供了JMS集成框架简化了JMS API的使用，像Spring JDBC API的使用。
+JMS的功能大致上分为两块，叫做消息发送和消息监听。JmsTemplate 用于发送消息和同步消息监听。和Java EE的事件驱动Bean风格类似，对于异步接收</p>
         
     
   </a>
@@ -201,7 +219,8 @@ JMS的功能大致上分为两块，叫做消息发送和消息监听。JmsTempl
     
      
            <p itemprop="description" >记录下自己项目在用的Spring Cache的使用方式。Spring的抽象已经做得够好了，适合于大多数场景，非常复杂的就需要自己AOP实现了。Spring官网的文档挺不错的，但是对Cache这块的介绍不是很详细，结合网上大牛的博文，汇总下文。
-缓存概念缓存简介缓存，我的理解是：让</p>
+##缓存概念
+###缓存简介缓存，我</p>
         
     
   </a>
@@ -216,9 +235,8 @@ JMS的功能大致上分为两块，叫做消息发送和消息监听。JmsTempl
     
      
            <p itemprop="description" >纯粹备忘
-统计内存块pmap -x $pid | awk ‘{ if($3 &amp;gt; 64000 &amp;amp;&amp;amp; $3 &amp;lt; 65537) count++ } END { print count }’
-导出内存块明细pmap -x $pid &amp;gt; pmap.log
-</p>
+##统计内存块pmap -x $pid | awk ‘{ if($3 &amp;gt; 64000 &amp;amp;&amp;amp; $3 &amp;lt; 65537) count++ } END { print count }’
+##导出内存块明细pmap -x $pid &amp;gt; pmap.</p>
         
     
   </a>
@@ -236,23 +254,6 @@ JMS的功能大致上分为两块，叫做消息发送和消息监听。JmsTempl
 Tomcat可以使用APR来提供超强的可伸缩性和性能，更好地集成本地服务器技术。
 APR(Apache Portable Runtime)是一个高可移植库，它是Apache HTTP Server 2.x的核心。
 APR有很多用途，包括访问高级IO功能(例如sen</p>
-        
-    
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost" style="margin-bottom: 5px;">
-  
-    <a href="/2015/06/17/使用google-perftools优化tomcat/" title="使用google-perftools优化tomcat" itemprop="url">
-  
-      <time datetime="2015-06-16T16:41:00.000Z" itemprop="datePublished">2015-06-17</time>
-    <h1 itemprop="name">使用google-perftools优化tomcat</h1>
-    
-     
-           <p itemprop="description" >这个工具可让开发创建更强大的应用程序，特别是那些用C++模版开发的多线程应用程序，包括TCMalloc, heap-checker, heap-profiler 和cpu-profiler。
-开源中国社区Google PerfTools首页、文档和下载
-前置依赖避免后续安装错误
-</p>
         
     
   </a>
@@ -303,7 +304,7 @@ APR有很多用途，包括访问高级IO功能(例如sen</p>
 		
 			<li><a href="/categories/心态/" title="心态">心态<sup>3</sup></a></li>
 		
-			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>11</sup></a></li>
+			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>12</sup></a></li>
 		
 		</ul>
 </div>
@@ -362,7 +363,7 @@ APR有很多用途，包括访问高级IO功能(例如sen</p>
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
+       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
     </div>
   </div>
 

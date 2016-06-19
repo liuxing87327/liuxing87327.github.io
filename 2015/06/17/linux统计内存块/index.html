@@ -14,9 +14,9 @@
     <meta name="author" content="liuxing">
     
     <meta name="description" content="纯粹备忘
-统计内存块pmap -x $pid | awk ‘{ if($3 &amp;gt; 64000 &amp;amp;&amp;amp; $3 &amp;lt; 65537) count++ } END { print count }’
-导出内存块明细pmap -x $pid &amp;gt; pmap.log
-导出核心进程内存su">
+##统计内存块pmap -x $pid | awk ‘{ if($3 &amp;gt; 64000 &amp;amp;&amp;amp; $3 &amp;lt; 65537) count++ } END { print count }’
+##导出内存块明细pmap -x $pid &amp;gt; pmap.log
+##导出核心">
     
     
     
@@ -113,7 +113,7 @@
               itemprop="datePublished">2015-06-17</time>
         
         更新日期:
-        <time datetime="2015-06-16T17:05:07.000Z"
+        <time datetime="2015-06-16T17:05:08.000Z"
               itemprop="dateModified">2015-06-17</time>
         
     </p>
@@ -123,23 +123,26 @@
             
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计内存块"><span class="toc-number">1.</span> <span class="toc-text">统计内存块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导出内存块明细"><span class="toc-number">2.</span> <span class="toc-text">导出内存块明细</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导出核心进程内存"><span class="toc-number">3.</span> <span class="toc-text">导出核心进程内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心进程内存转换为heap_dump"><span class="toc-number">4.</span> <span class="toc-text">核心进程内存转换为heap dump</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导入本地使用MAT工具分析"><span class="toc-number">5.</span> <span class="toc-text">导入本地使用MAT工具分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用libtcmalloc优化linux内存管理"><span class="toc-number">6.</span> <span class="toc-text">使用libtcmalloc优化linux内存管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查找文件"><span class="toc-number">7.</span> <span class="toc-text">查找文件</span></a></li></ol>
+                
             </div>
             
             <p><em>纯粹备忘</em></p>
-<h2 id="统计内存块">统计内存块</h2><p>pmap -x $pid | awk ‘{ if($3 &gt; 64000 &amp;&amp; $3 &lt; 65537) count++ } END { print count }’</p>
-<h2 id="导出内存块明细">导出内存块明细</h2><p>pmap -x $pid &gt; pmap.log</p>
-<h2 id="导出核心进程内存">导出核心进程内存</h2><p>sudo gdb -q —pid=4990</p>
-<p>—pid后面跟着的是jvm的进程id<br>(gdb) generate-core-file </p>
+<p>##统计内存块<br>pmap -x $pid | awk ‘{ if($3 &gt; 64000 &amp;&amp; $3 &lt; 65537) count++ } END { print count }’</p>
+<p>##导出内存块明细<br>pmap -x $pid &gt; pmap.log</p>
+<p>##导出核心进程内存</p>
+<p>sudo gdb -q –pid=4990</p>
+<p>–pid后面跟着的是jvm的进程id<br>(gdb) generate-core-file </p>
 <p>这里调用命令生成gcore的dump文件<br>(gdb) detach </p>
 <p>detach是用来断开与jvm的连接的<br>(gdb) quit</p>
 <p>指定内存块：<br>内存地址从pmap结果中查询<br> dump memory memory.bin 0x0007f5f38000000 0x0007f5f394af000</p>
-<p>导出核心进程内存（正式库数据太大不建议）<br>gdb —pid $pid<br>gcore   [文件名]    #   产生core dump文件</p>
+<p>导出核心进程内存（正式库数据太大不建议）<br>gdb –pid $pid<br>gcore   [文件名]    #   产生core dump文件</p>
 <p><a href="http://blog.chinaunix.net/uid-24020646-id-2419921.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-24020646-id-2419921.html</a></p>
-<h2 id="核心进程内存转换为heap_dump">核心进程内存转换为heap dump</h2><p>$JAVA_HOME/bin/jmap -dump:format=b,file=heap.hprof $JAVA_HOME/bin/java core.63278<br>/usr/java/jdk1.8.0_40/bin/jmap -dump:format=b,file=heap.hprof /usr/java/jdk1.8.0_40/bin/java memory.bin<br>/usr/local/java/jdk1.8.0_20/bin/jmap -dump:format=b,file=heap.hprof /usr/local/java/jdk1.8.0_20/bin/java memory.bin<br><a href="http://itindex.net/detail/50907-jmap-gcore-dump" target="_blank" rel="external">http://itindex.net/detail/50907-jmap-gcore-dump</a></p>
+<p>##核心进程内存转换为heap dump<br>$JAVA_HOME/bin/jmap -dump:format=b,file=heap.hprof $JAVA_HOME/bin/java core.63278<br>/usr/java/jdk1.8.0_40/bin/jmap -dump:format=b,file=heap.hprof /usr/java/jdk1.8.0_40/bin/java memory.bin<br>/usr/local/java/jdk1.8.0_20/bin/jmap -dump:format=b,file=heap.hprof /usr/local/java/jdk1.8.0_20/bin/java memory.bin<br><a href="http://itindex.net/detail/50907-jmap-gcore-dump" target="_blank" rel="external">http://itindex.net/detail/50907-jmap-gcore-dump</a></p>
 <p><a href="http://www.ibm.com/developerworks/cn/java/j-memoryanalyzer/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-memoryanalyzer/</a></p>
-<h2 id="导入本地使用MAT工具分析">导入本地使用MAT工具分析</h2><h2 id="使用libtcmalloc优化linux内存管理">使用libtcmalloc优化linux内存管理</h2><p>gperftools+libunwind</p>
-<h2 id="查找文件">查找文件</h2><p>find / -name “libunwind*” </p>
+<p>##导入本地使用MAT工具分析</p>
+<p>##使用libtcmalloc优化linux内存管理<br>gperftools+libunwind</p>
+<p>##查找文件</p>
+<p>find / -name “libunwind*” </p>
 <p>jhat -J-Xmx1024M heap.hprof </p>
 
         </div>
@@ -229,7 +232,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计内存块"><span class="toc-number">1.</span> <span class="toc-text">统计内存块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导出内存块明细"><span class="toc-number">2.</span> <span class="toc-text">导出内存块明细</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导出核心进程内存"><span class="toc-number">3.</span> <span class="toc-text">导出核心进程内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心进程内存转换为heap_dump"><span class="toc-number">4.</span> <span class="toc-text">核心进程内存转换为heap dump</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导入本地使用MAT工具分析"><span class="toc-number">5.</span> <span class="toc-text">导入本地使用MAT工具分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用libtcmalloc优化linux内存管理"><span class="toc-number">6.</span> <span class="toc-text">使用libtcmalloc优化linux内存管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查找文件"><span class="toc-number">7.</span> <span class="toc-text">查找文件</span></a></li></ol>
+  
   </div>
 
 <div id="asidepart">
@@ -269,7 +272,7 @@
 		
 			<li><a href="/categories/心态/" title="心态">心态<sup>3</sup></a></li>
 		
-			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>11</sup></a></li>
+			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>12</sup></a></li>
 		
 		</ul>
 </div>
@@ -328,7 +331,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
+       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
     </div>
   </div>
 

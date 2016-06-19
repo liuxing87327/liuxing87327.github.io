@@ -2,223 +2,318 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://liuxing.info/2016/06/18/%E4%BD%BF%E7%94%A8SDKMAN%E7%AE%A1%E7%90%86%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
+    
+    <lastmod>2016-06-17T20:21:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://liuxing.info/2015/09/09/shadowsocks%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</loc>
+    
     <lastmod>2016-05-23T17:05:38.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2016/01/05/Tomcat-Jdbc-Pool%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/</loc>
-    <lastmod>2016-05-05T11:16:23.000Z</lastmod>
+    
+    <lastmod>2016-05-05T11:16:24.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2016/03/15/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    
     <lastmod>2016-03-17T08:33:00.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2016/01/31/RabbitMQ%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89%E5%AE%89%E8%A3%85%E7%AF%87/</loc>
+    
     <lastmod>2016-01-31T05:23:50.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/05/21/RestTemplate%E5%AE%9E%E8%B7%B5/</loc>
+    
     <lastmod>2015-07-29T16:20:02.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/07/08/%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6%E7%9A%84%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2015-07-07T19:16:07.000Z</lastmod>
+    
+    <lastmod>2015-07-07T19:16:08.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/07/05/Spring%20JMS%E7%B2%97%E8%AF%91/</loc>
+    
     <lastmod>2015-07-05T13:37:28.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/about/index.html</loc>
+    
     <lastmod>2015-07-02T03:50:16.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/06/18/Spring%20Cache%E4%BD%BF%E7%94%A8/</loc>
+    
     <lastmod>2015-06-30T12:15:16.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/06/17/Tomcat%E7%9A%84APR%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2015-06-16T17:14:45.000Z</lastmod>
+    
+    <lastmod>2015-06-16T17:14:46.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/06/16/linux%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98/</loc>
+    
     <lastmod>2015-06-16T17:09:16.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/06/17/linux%E7%BB%9F%E8%AE%A1%E5%86%85%E5%AD%98%E5%9D%97/</loc>
-    <lastmod>2015-06-16T17:05:07.000Z</lastmod>
+    
+    <lastmod>2015-06-16T17:05:08.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/06/17/%E4%BD%BF%E7%94%A8google-perftools%E4%BC%98%E5%8C%96tomcat/</loc>
-    <lastmod>2015-06-16T16:53:15.000Z</lastmod>
+    
+    <lastmod>2015-06-16T16:53:16.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/06/17/MemAdmin%E7%AE%A1%E7%90%86Memcached/</loc>
+    
     <lastmod>2015-06-16T16:42:34.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/06/17/linux%E5%AE%89%E8%A3%85jdk/</loc>
+    
     <lastmod>2015-06-16T16:23:10.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/01/01/faqs/</loc>
+    
     <lastmod>2015-06-16T16:16:18.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/06/17/wget%E4%B8%8B%E8%BD%BDjdk/</loc>
-    <lastmod>2015-06-16T16:15:15.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://liuxing.info/2013/12/20/%E5%9C%A8windows%E5%92%8Clinux%E4%B8%8A%E5%AE%89%E8%A3%85ImageMagick%E4%B8%8EJmagick/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+    
+    <lastmod>2015-06-16T16:15:16.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2012/08/16/%E4%BD%BF%E7%94%A8pinyin4j%E5%B0%86%E4%B8%AD%E6%96%87%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%8B%BC%E9%9F%B3/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://liuxing.info/2015/04/21/%E4%BD%BF%E7%94%A8spring4%E7%9A%84websocket%E6%94%AF%E6%8C%81/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:47:14.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2013/05/23/%E4%BD%BF%E7%94%A8jmagick%E5%B0%86CMYK%E8%BD%AC%E6%8D%A2%E4%B8%BARGB/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:47:14.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/02/09/websocket-demo/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:47:14.000Z</lastmod>
+    
   </url>
   
   <url>
-    <loc>http://liuxing.info/2015/04/21/%E8%AE%A1%E7%AE%97%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://liuxing.info/2015/04/21/java%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%A1%E7%AE%97%E4%B8%A4%E4%B8%AA%E5%9D%90%E6%A0%87%E7%9A%84%E8%B7%9D%E7%A6%BB/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+    <loc>http://liuxing.info/2015/04/21/%E4%BD%BF%E7%94%A8spring4%E7%9A%84websocket%E6%94%AF%E6%8C%81/</loc>
+    
+    <lastmod>2015-06-16T13:47:14.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/04/21/spring4%E4%B8%8D%E5%85%BC%E5%AE%B9ibatis%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%20/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:47:14.000Z</lastmod>
+    
   </url>
   
   <url>
-    <loc>http://liuxing.info/2012/08/16/%E8%B0%B7%E6%AD%8C%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%20/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+    <loc>http://liuxing.info/2015/04/21/%E8%AE%A1%E7%AE%97%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85/</loc>
+    
+    <lastmod>2015-06-16T13:47:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://liuxing.info/2015/04/21/java%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%A1%E7%AE%97%E4%B8%A4%E4%B8%AA%E5%9D%90%E6%A0%87%E7%9A%84%E8%B7%9D%E7%A6%BB/</loc>
+    
+    <lastmod>2015-06-16T13:47:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://liuxing.info/2013/12/20/%E5%9C%A8windows%E5%92%8Clinux%E4%B8%8A%E5%AE%89%E8%A3%85ImageMagick%E4%B8%8EJmagick/</loc>
+    
+    <lastmod>2015-06-16T13:47:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://liuxing.info/2012/08/16/%E8%B0%B7%E6%AD%8C%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87/</loc>
+    
+    <lastmod>2015-06-16T13:47:14.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2012/08/16/%E5%BC%95%E5%85%A5%E5%85%AC%E5%85%B1%E5%A4%B4%E9%83%A8%E6%97%B6%EF%BC%8C%E6%8E%A7%E5%88%B6%E5%BC%95%E5%85%A5js%E3%80%81css%E3%80%81title/</loc>
-    <lastmod>2015-06-16T13:47:13.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:47:14.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2012/07/04/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1js/</loc>
+    
     <lastmod>2015-06-16T13:08:16.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2012/07/04/%E9%80%90%E6%AD%A5%E6%94%B9%E5%96%84%EF%BC%8C%E8%AE%BE%E8%AE%A1%E4%BC%98%E7%A7%80%E7%9A%84API/</loc>
+    
     <lastmod>2015-06-16T13:08:12.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2012/07/04/%E7%BE%8E%E5%88%B0%E6%9E%81%E8%87%B4%E6%98%AF%E7%96%AF%E7%8B%82/</loc>
-    <lastmod>2015-06-16T13:07:59.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:08:00.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2014/12/10/%E6%88%91%E7%BC%96%E7%A8%8B%E6%88%91%E5%BF%AB%E4%B9%90/</loc>
-    <lastmod>2015-06-16T13:07:55.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:07:56.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2012/07/04/%E4%BC%98%E7%A7%80%E7%9A%84%E5%BC%80%E5%8F%91%E8%80%85%20vs.%20%E5%B7%AE%E7%9A%84%E5%BC%80%E5%8F%91%E8%80%85/</loc>
-    <lastmod>2015-06-16T13:07:21.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:07:22.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2012/09/08/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE%E7%A4%BA%E4%BE%8B/</loc>
+    
     <lastmod>2015-06-16T13:07:16.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2014/03/20/Windows%20%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    
     <lastmod>2015-06-16T13:07:12.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2014/04/25/linux%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85%E3%80%81%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%8D%B8%E8%BD%BD/</loc>
-    <lastmod>2015-06-16T13:06:43.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:06:44.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2012/09/08/JS%20Hash%E5%AF%B9%E8%B1%A1/</loc>
+    
     <lastmod>2015-06-16T13:06:12.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/02/01/jquery%E5%B8%B8%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8/</loc>
+    
     <lastmod>2015-06-16T13:06:06.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2015/06/14/GitHub%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2015-06-16T13:05:45.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:05:46.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/2014/09/25/Java7%20Try-with-resources%20(TWR)/</loc>
-    <lastmod>2015-06-16T13:05:05.000Z</lastmod>
+    
+    <lastmod>2015-06-16T13:05:06.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/a0b863573ef4d9e394b1b0fa49db1564.html</loc>
+    
     <lastmod>2015-06-14T05:41:10.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/search/index.html</loc>
+    
     <lastmod>2015-06-11T06:10:41.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/404.html</loc>
+    
     <lastmod>2015-06-10T07:08:35.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/tags/index.html</loc>
+    
     <lastmod>2015-06-09T17:24:10.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://liuxing.info/categories/index.html</loc>
+    
     <lastmod>2015-06-09T17:24:05.000Z</lastmod>
+    
   </url>
   
 </urlset>

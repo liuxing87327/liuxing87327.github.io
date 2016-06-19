@@ -133,46 +133,46 @@ useradd ">
             
             <p><em>记录一下自己常用的linux命令</em></p>
 <p>独立用户需要配置path,切换到根目录查看path</p>
-<pre><code><span class="tag">vi</span> <span class="class">.bash_profile</span>
+<pre><code>vi .bash_profile
 </code></pre><p>重新给文件夹赋权限</p>
-<pre><code><span class="tag">chown</span> <span class="tag">-R</span> <span class="tag">yishou</span> <span class="tag">apache-tomcat-7</span><span class="class">.0</span><span class="class">.47</span>
+<pre><code>chown -R yishou apache-tomcat-7.0.47
 </code></pre><p>修改密码</p>
-<pre><code><span class="title">passwd</span> yishou
+<pre><code>passwd yishou
 </code></pre><p>新增用户，会自动创建同名文件夹</p>
-<pre><code><span class="title">useradd</span> loupan
+<pre><code>useradd loupan
 </code></pre><p>删除用户</p>
-<pre><code><span class="title">userdel</span> keybox
+<pre><code>userdel keybox
 </code></pre><p>创建文件夹</p>
-<pre><code><span class="built_in">mkdir</span> yishou
+<pre><code>mkdir yishou
 </code></pre><p>防止环境配置修改之后不立即生效，退出重新登录也可以</p>
-<pre><code><span class="built_in">source</span> .bash_profile
+<pre><code>source .bash_profile
 </code></pre><p>根据名字查找进程</p>
-<pre><code><span class="keyword">ps</span> -aux | <span class="keyword">grep</span> estat
+<pre><code>ps -aux | grep estat
 </code></pre><p>关闭防火墙<br>    /etc/init.d/iptables stop</p>
 <p>关闭开机启动</p>
-<pre><code><span class="title">chkconfig</span> --level <span class="number">2345</span> iptables <span class="built_in">off</span>
+<pre><code>chkconfig --level 2345 iptables off
 </code></pre><p>赋权限</p>
-<pre><code><span class="title">chmod</span> <span class="number">777</span> origimagesdisk
+<pre><code>chmod 777 origimagesdisk
 </code></pre><p>MAC修改hosts</p>
-<pre><code>sudo vi <span class="regexp">/etc/</span>hosts
+<pre><code>sudo vi /etc/hosts
 </code></pre><p>查看文件夹使用情况</p>
-<pre><code>du --<span class="built_in">max</span>-<span class="built_in">depth</span>=<span class="number">1</span> -h
+<pre><code>du --max-depth=1 -h
 </code></pre><p>linux新建tomcat无法启动<br><code>Cannot find bin/catalina.sh</code><br><em>The file is absent or does not have execute permission</em><br><em>This file is needed to run this program</em></p>
 <p>原因： 没有权限<br>解决 ： chmod 777 *.sh </p>
 <p>添加开机启动</p>
-<pre><code>vi /etc/rc.<span class="keyword">local</span>
+<pre><code>vi /etc/rc.local
 </code></pre><p>jvisualvm</p>
 <p>修改mac最大连接数，默认128</p>
-<pre><code>sudo sysctl -w kern<span class="class">.ipc</span><span class="class">.somaxconn</span>=
+<pre><code>sudo sysctl -w kern.ipc.somaxconn=
 </code></pre><p>linux ssh互信</p>
 <pre><code>ssh-keygen -t rsa
-cd ~/<span class="class">.ssh</span> 
-scp -r id_rsa<span class="class">.pub</span> keyuan@<span class="number">192.168</span>.<span class="number">3.51</span>:/home/keyuan/.ssh/authorized_keys
+cd ~/.ssh 
+scp -r id_rsa.pub keyuan@192.168.3.51:/home/keyuan/.ssh/authorized_keys
 </code></pre><p>配置java环境变量</p>
-<pre><code>export JAVA_HOME=/usr/local/java/jdk1.<span class="number">8.0</span>_40
-export JRE_HOME=<span class="variable">$JAVA_HOME</span>
-export CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/<span class="tag">dt</span><span class="class">.jar</span>:<span class="variable">$JAVA_HOME</span>/lib/tools<span class="class">.jar</span>
-export PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span>
+<pre><code>export JAVA_HOME=/usr/local/java/jdk1.8.0_40
+export JRE_HOME=$JAVA_HOME
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$JAVA_HOME/bin:$PATH
 </code></pre>
         </div>
         <footer class="article-footer clearfix">
@@ -301,7 +301,7 @@ export PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">
 		
 			<li><a href="/categories/心态/" title="心态">心态<sup>3</sup></a></li>
 		
-			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>11</sup></a></li>
+			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>12</sup></a></li>
 		
 		</ul>
 </div>
@@ -360,7 +360,7 @@ export PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
+       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
     </div>
   </div>
 

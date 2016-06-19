@@ -113,7 +113,7 @@ APR有很多用途，包括访问高级IO功能(例如sendfile,epol">
               itemprop="datePublished">2015-06-17</time>
         
         更新日期:
-        <time datetime="2015-06-16T17:14:45.000Z"
+        <time datetime="2015-06-16T17:14:46.000Z"
               itemprop="dateModified">2015-06-17</time>
         
     </p>
@@ -123,7 +123,7 @@ APR有很多用途，包括访问高级IO功能(例如sendfile,epol">
             
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装apr"><span class="toc-number">1.</span> <span class="toc-text">安装apr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装native"><span class="toc-number">2.</span> <span class="toc-text">安装native</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置tomcat"><span class="toc-number">3.</span> <span class="toc-text">配置tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重启查看日志"><span class="toc-number">4.</span> <span class="toc-text">重启查看日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+                
             </div>
             
             <p><em>什么是APR？</em></p>
@@ -132,21 +132,25 @@ APR有很多用途，包括访问高级IO功能(例如sendfile,epol">
 <p>APR有很多用途，包括访问高级IO功能(例如sendfile,epoll和OpenSSL)，OS级别功能(随机数生成，系统状态等等)，本地进程管理(共享内存，NT管道和UNIX sockets)。这些功能可以使Tomcat作为一个通常的前台WEB服务器，能更好地和其它本地web技术集成，总体上让Java更有效率作为一个高性能web服务器平台而不是简单作为后台容器。</p>
 <p>在产品环境中，特别是直接使用Tomcat做WEB服务器的时候，应该使用Tomcat Native来提高其性能。</p>
 <footer><strong>Apache Portable Runtime</strong><cite><a href="http://apr.apache.org/" target="_blank" rel="external">Welcome! - The Apache Portable Runtime Project</a></cite></footer></blockquote>
-<h2 id="安装apr">安装apr</h2><p>yum install -y apr-devel openssl-devel gcc</p>
+<p>##安装apr<br>yum install -y apr-devel openssl-devel gcc</p>
 <p>查看安装目录<br>rpm -ql apr-devel<br>rpm -ql openssl-devel</p>
 <p>apr目录：/usr/bin/apr-1-config</p>
-<h2 id="安装native">安装native</h2><p>拷贝：tomcat/bin目录下的tomcat-native.tar.gz到某个位置<br>解压：tar zxvf tomcat-native.tar.gz</p>
-<pre><code>cd  tomcat-<span class="reserved">native</span>-<span class="number">1.1</span>.32-src<span class="regexp">/jni/native/</span>
-./configure --<span class="reserved">with</span>-apr=/usr/bin/apr-<span class="number">1</span>-config --<span class="reserved">with</span>-java-home=$JAVA_HOME 
-.<span class="regexp">/configure --with-apr=/usr/local/apache2/</span> --<span class="reserved">with</span>-java-home=/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home --<span class="reserved">with</span>-ssl=<span class="literal">yes</span>
+<p>##安装native</p>
+<p>拷贝：tomcat/bin目录下的tomcat-native.tar.gz到某个位置<br>解压：tar zxvf tomcat-native.tar.gz</p>
+<pre><code>cd  tomcat-native-1.1.32-src/jni/native/
+./configure --with-apr=/usr/bin/apr-1-config --with-java-home=$JAVA_HOME 
+./configure --with-apr=/usr/local/apache2/ --with-java-home=/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home --with-ssl=yes
 </code></pre><p>可选：</p>
-<pre><code>--<span class="reserved">with</span>-ssl=<span class="literal">yes</span>
+<pre><code>--with-ssl=yes
 make &amp; make install
-</code></pre><h2 id="配置tomcat">配置tomcat</h2><pre><code>vim catalina.sh
-export <span class="constant">LD_LIBRARY_PATH=</span><span class="variable">$LD_LIBRARY_PATH</span><span class="symbol">:/usr/local/apr/lib</span>
+</code></pre><p>##配置tomcat</p>
+<pre><code>vim catalina.sh
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/apr/lib
 </code></pre><p>将tomcat/config/service.xml 的protocol 改为</p>
-<pre><code>org<span class="class">.apache</span><span class="class">.coyote</span><span class="class">.http11</span><span class="class">.Http11AprProtocol</span>
-</code></pre><h2 id="重启查看日志">重启查看日志</h2><h2 id="参考">参考</h2><p><a href="http://www.cnblogs.com/kgdxpr/archive/2013/08/07/3243657.html" target="_blank" rel="external">http://www.cnblogs.com/kgdxpr/archive/2013/08/07/3243657.html</a></p>
+<pre><code>org.apache.coyote.http11.Http11AprProtocol
+</code></pre><p>##重启查看日志</p>
+<p>##参考</p>
+<p><a href="http://www.cnblogs.com/kgdxpr/archive/2013/08/07/3243657.html" target="_blank" rel="external">http://www.cnblogs.com/kgdxpr/archive/2013/08/07/3243657.html</a></p>
 <p><a href="http://blog.csdn.net/qingchn/article/details/7895851" target="_blank" rel="external">http://blog.csdn.net/qingchn/article/details/7895851</a></p>
 <p><a href="http://tomcat.apache.org/native-doc/" target="_blank" rel="external">http://tomcat.apache.org/native-doc/</a></p>
 <p><a href="http://neptune.iteye.com/blog/125101" target="_blank" rel="external">http://neptune.iteye.com/blog/125101</a></p>
@@ -239,7 +243,7 @@ export <span class="constant">LD_LIBRARY_PATH=</span><span class="variable">$LD_
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装apr"><span class="toc-number">1.</span> <span class="toc-text">安装apr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装native"><span class="toc-number">2.</span> <span class="toc-text">安装native</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置tomcat"><span class="toc-number">3.</span> <span class="toc-text">配置tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重启查看日志"><span class="toc-number">4.</span> <span class="toc-text">重启查看日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+  
   </div>
 
 <div id="asidepart">
@@ -279,7 +283,7 @@ export <span class="constant">LD_LIBRARY_PATH=</span><span class="variable">$LD_
 		
 			<li><a href="/categories/心态/" title="心态">心态<sup>3</sup></a></li>
 		
-			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>11</sup></a></li>
+			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>12</sup></a></li>
 		
 		</ul>
 </div>
@@ -338,7 +342,7 @@ export <span class="constant">LD_LIBRARY_PATH=</span><span class="variable">$LD_
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
+       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
     </div>
   </div>
 

@@ -13,11 +13,11 @@
     
     <meta name="author" content="liuxing">
     
-    <meta name="description" content="介绍Linux常见的安装为tar，zip，gz，rpm，deb，bin等。可以简单的分为三类.
+    <meta name="description" content="##介绍Linux常见的安装为tar，zip，gz，rpm，deb，bin等。可以简单的分为三类.
 
 
 打包或压缩文件tar，zip，gz等，一般解压后即可，或者解压后运行sh文件；
-对应的有管理工具的deb，rpm等，通常的这类安装文件可以通过第三方的命令行或UI来简单的安装。例如Ubuntu中的ap">
+对应的有管理工具的deb，rpm等，通常的这类安装文件可以通过第三方的命令行或UI来简单的安装。例如Ubuntu中的">
     
     
     
@@ -114,7 +114,7 @@
               itemprop="datePublished">2014-04-25</time>
         
         更新日期:
-        <time datetime="2015-06-16T13:06:43.000Z"
+        <time datetime="2015-06-16T13:06:44.000Z"
               itemprop="dateModified">2015-06-16</time>
         
     </p>
@@ -124,10 +124,10 @@
             
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rpm安装，更新与卸载"><span class="toc-number">2.1.</span> <span class="toc-text">rpm安装，更新与卸载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以-bin结尾的安装包"><span class="toc-number">2.2.</span> <span class="toc-text">以.bin结尾的安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar-gz(bz或bz2等)结尾的源代码包"><span class="toc-number">2.3.</span> <span class="toc-text">tar.gz(bz或bz2等)结尾的源代码包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yum安装"><span class="toc-number">2.4.</span> <span class="toc-text">yum安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-get安装"><span class="toc-number">2.5.</span> <span class="toc-text">apt-get安装</span></a></li></ol></li></ol>
+                
             </div>
             
-            <h2 id="介绍">介绍</h2><p>Linux常见的安装为tar，zip，gz，rpm，deb，bin等。可以简单的分为三类.</p>
+            <p>##介绍<br>Linux常见的安装为tar，zip，gz，rpm，deb，bin等。可以简单的分为三类.</p>
 <blockquote>
 <ul>
 <li>打包或压缩文件tar，zip，gz等，一般解压后即可，或者解压后运行sh文件；</li>
@@ -136,15 +136,21 @@
 </ul>
 </blockquote>
 <p><br><br></p>
-<h2 id="安装">安装</h2><h3 id="rpm安装，更新与卸载">rpm安装，更新与卸载</h3><p><em>RPM包，这种软件包就像windows的EXE安装文件一样，各种文件已经编译好，并打了包，哪个文件该放到哪个文件夹，都指定好了，安装非常方便，在图形界面里你只需要双击就能自动安装。但是有一点不好，就是包的依赖关系，很恶心。</em></p>
+<p>##安装</p>
+<p>###rpm安装，更新与卸载</p>
+<p><em>RPM包，这种软件包就像windows的EXE安装文件一样，各种文件已经编译好，并打了包，哪个文件该放到哪个文件夹，都指定好了，安装非常方便，在图形界面里你只需要双击就能自动安装。但是有一点不好，就是包的依赖关系，很恶心。</em></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">A. rpm安装</span><br><span class="line"></span><br><span class="line">  <span class="number">1</span>) 找到相应的软件包，比如jmagick-<span class="number">6.4</span>.<span class="number">0</span>-<span class="number">3</span>.src.rpm，下载到本机某个目录；</span><br><span class="line">  <span class="number">2</span>) 打开一个终端，su 成root用户；</span><br><span class="line">  <span class="number">3</span>) <span class="built_in">cd</span> jmagick-<span class="number">6.4</span>.<span class="number">0</span>-<span class="number">3</span>.src.rpm所在的目录；</span><br><span class="line">  <span class="number">4</span>) 输入rpm -ivh jmagick-<span class="number">6.4</span>.<span class="number">0</span>-<span class="number">3</span>.src.rpm</span><br><span class="line"></span><br><span class="line">B.rpm更新</span><br><span class="line">   <span class="comment">#rpm -Uvh jmagick-6.4.0-3.src.rpm</span></span><br><span class="line"></span><br><span class="line">C.rpm卸载</span><br><span class="line"></span><br><span class="line">   <span class="number">1</span>) 查找欲卸载的软件包 rpm -qa | grep ×XXX×</span><br><span class="line">   <span class="number">2</span>) 例如找到软件mysql-<span class="number">4.1</span>.<span class="number">22</span>-<span class="number">2</span>.el4_8.<span class="number">4</span> ，执行rpm <span class="operator">-e</span> mysql-<span class="number">4.1</span>.<span class="number">22</span>-<span class="number">2</span>.el4_8.<span class="number">4</span></span><br><span class="line"></span><br><span class="line"> 注意：查询软件的安装目录，用命令 rpm -ql mysql-<span class="number">4.1</span>.<span class="number">22</span>-<span class="number">2</span>.el4_8.<span class="number">4</span></span><br></pre></td></tr></table></figure>
-<h3 id="以-bin结尾的安装包">以.bin结尾的安装包</h3><p><em>bin类似rpm包安装，也比较简单</em></p>
+<p>###以.bin结尾的安装包</p>
+<p><em>bin类似rpm包安装，也比较简单</em></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bin安装</span><br><span class="line">    <span class="number">1</span>) 打开一个SHELL，即终端</span><br><span class="line">    <span class="number">2</span>) 用CD 命令进入源代码压缩包所在的目录</span><br><span class="line">    <span class="number">3</span>) 给文件加上可执行属性：chmod +x ******.bin(中间是字母x，小写)</span><br><span class="line">    <span class="number">4</span>) 执行命令：./******.bin 或者 直接执行 sh ******.bin</span><br><span class="line"></span><br><span class="line">   bin卸载</span><br><span class="line">     把安装时中选择的安装目录删除就OK</span><br></pre></td></tr></table></figure>
-<h3 id="tar-gz(bz或bz2等)结尾的源代码包">tar.gz(bz或bz2等)结尾的源代码包</h3><p><em>这种软件包里面都是源程序，没有编译过，需要编译后才能安装</em></p>
+<p>###tar.gz(bz或bz2等)结尾的源代码包</p>
+<p><em>这种软件包里面都是源程序，没有编译过，需要编译后才能安装</em></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">源代码安装</span><br><span class="line">    <span class="number">1</span>) 打开一个SHELL，即终端</span><br><span class="line">    <span class="number">2</span>) 用CD 命令进入源代码压缩包所在的目录</span><br><span class="line">    <span class="number">3</span>) 根据压缩包类型解压缩文件(*代表压缩包名称)</span><br><span class="line">　　   tar -zxvf ****.tar.gz</span><br><span class="line">　　   tar -jxvf ****.tar.bz(或bz2)</span><br><span class="line">    <span class="number">4</span>) 用CD命令进入解压缩后的目录</span><br><span class="line">    <span class="number">5</span>) 输入编译文件命令：./configure(有的压缩包已经编译过，这一步可以省去)</span><br><span class="line">    <span class="number">6</span>) 然后是命令：make</span><br><span class="line">    <span class="number">7</span>) 再是安装文件命令：make install</span><br></pre></td></tr></table></figure>
-<h3 id="yum安装">yum安装</h3><p><em>yum是rpm的管理工具，管理一个软件库，可以很好的解决依赖关系</em></p>
+<p>###yum安装</p>
+<p><em>yum是rpm的管理工具，管理一个软件库，可以很好的解决依赖关系</em></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>) yum安装</span><br><span class="line">    yum install -y 软件名</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>) yum更新</span><br><span class="line">    yum update -y  软件名</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>) yum卸载</span><br><span class="line">    yum remove -y 软件名</span><br><span class="line">    或</span><br><span class="line">    yum erase -y 软件名</span><br></pre></td></tr></table></figure>
-<h3 id="apt-get安装">apt-get安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get 是deb的管理工具，类似yum</span><br><span class="line">apt-get install package 安装包</span><br><span class="line">apt-get reinstall package  重新安装包</span><br><span class="line">apt-get upgrade 更新已安装的包</span><br><span class="line">apt-cache rdepends package 是查看该包被哪些包依赖</span><br><span class="line">apt-cache depends package 了解使用依赖</span><br><span class="line">apt-get clean &amp;&amp;  apt-get autoclean 清理无用的包</span><br><span class="line">apt-cache show package 获取包的相关信息，如说明、大小、版本等</span><br><span class="line">apt-get remove package 删除包</span><br><span class="line">apt-get purge package  删除包，包括删除配置文件等</span><br></pre></td></tr></table></figure>
+<p>###apt-get安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get 是deb的管理工具，类似yum</span><br><span class="line">apt-get install package 安装包</span><br><span class="line">apt-get reinstall package  重新安装包</span><br><span class="line">apt-get upgrade 更新已安装的包</span><br><span class="line">apt-cache rdepends package 是查看该包被哪些包依赖</span><br><span class="line">apt-cache depends package 了解使用依赖</span><br><span class="line">apt-get clean &amp;&amp;  apt-get autoclean 清理无用的包</span><br><span class="line">apt-cache show package 获取包的相关信息，如说明、大小、版本等</span><br><span class="line">apt-get remove package 删除包</span><br><span class="line">apt-get purge package  删除包，包括删除配置文件等</span><br></pre></td></tr></table></figure>
         </div>
         <footer class="article-footer clearfix">
     
@@ -232,7 +238,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rpm安装，更新与卸载"><span class="toc-number">2.1.</span> <span class="toc-text">rpm安装，更新与卸载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以-bin结尾的安装包"><span class="toc-number">2.2.</span> <span class="toc-text">以.bin结尾的安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar-gz(bz或bz2等)结尾的源代码包"><span class="toc-number">2.3.</span> <span class="toc-text">tar.gz(bz或bz2等)结尾的源代码包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yum安装"><span class="toc-number">2.4.</span> <span class="toc-text">yum安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-get安装"><span class="toc-number">2.5.</span> <span class="toc-text">apt-get安装</span></a></li></ol></li></ol>
+  
   </div>
 
 <div id="asidepart">
@@ -272,7 +278,7 @@
 		
 			<li><a href="/categories/心态/" title="心态">心态<sup>3</sup></a></li>
 		
-			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>11</sup></a></li>
+			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>12</sup></a></li>
 		
 		</ul>
 </div>
@@ -331,7 +337,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
+       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
     </div>
   </div>
 

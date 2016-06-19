@@ -13,13 +13,13 @@
     
     <meta name="author" content="liuxing">
     
-    <meta name="description" content="介绍Tomcat 在 7.0 以前的版本都是使用commons-dbcp做为连接池的实现，但是DBCP存在一些问题： 
+    <meta name="description" content="##介绍Tomcat 在 7.0 以前的版本都是使用commons-dbcp做为连接池的实现，但是DBCP存在一些问题： 
 
 DBCP 是单线程的，为了保证线程安全会锁整个连接池 
 DBCP 性能不佳
 DBCP 太复杂，超过60个类，发展滞后。 
 
-因此，通常J2EE中还会使用其它的高性能连接池，如C3">
+因此，通常J2EE中还会使用其它的高性能连接池，如">
     
     
     
@@ -116,7 +116,7 @@ DBCP 太复杂，超过60个类，发展滞后。
               itemprop="datePublished">2016-01-05</time>
         
         更新日期:
-        <time datetime="2016-05-05T11:16:23.000Z"
+        <time datetime="2016-05-05T11:16:24.000Z"
               itemprop="dateModified">2016-05-05</time>
         
     </p>
@@ -126,10 +126,10 @@ DBCP 太复杂，超过60个类，发展滞后。
             
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性"><span class="toc-number">2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样例"><span class="toc-number">3.</span> <span class="toc-text">样例</span></a></li></ol>
+                
             </div>
             
-            <h2 id="介绍">介绍</h2><p>Tomcat 在 7.0 以前的版本都是使用commons-dbcp做为连接池的实现，但是DBCP存在一些问题： </p>
+            <p>##介绍<br>Tomcat 在 7.0 以前的版本都是使用commons-dbcp做为连接池的实现，但是DBCP存在一些问题： </p>
 <ul>
 <li>DBCP 是单线程的，为了保证线程安全会锁整个连接池 </li>
 <li>DBCP 性能不佳</li>
@@ -147,7 +147,8 @@ DBCP 太复杂，超过60个类，发展滞后。
 <li>支持 XA Connection。 </li>
 <li>Tomcat Jdbc Pool 可在 Tomcat 中直接使用，也可以在独立的应用中使用。 </li>
 </ul>
-<h2 id="属性">属性</h2><p>通用属性</p>
+<p>##属性</p>
+<p>通用属性</p>
 <table>
 <thead>
 <tr>
@@ -425,7 +426,8 @@ DBCP 太复杂，超过60个类，发展滞后。
 </tr>
 </tbody>
 </table>
-<h2 id="样例">样例</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">bean</span> <span class="attribute">id</span>=<span class="value">"parentDataSource"</span> <span class="attribute">abstract</span>=<span class="value">"true"</span> <span class="attribute">class</span>=<span class="value">"org.apache.tomcat.jdbc.pool.DataSource"</span> <span class="attribute">destroy-method</span>=<span class="value">"close"</span></span><br><span class="line">          <span class="attribute">p:maxWait</span>=<span class="value">"10000"</span></span><br><span class="line">          <span class="attribute">p:removeAbandoned</span>=<span class="value">"true"</span></span><br><span class="line">          <span class="attribute">p:removeAbandonedTimeout</span>=<span class="value">"180"</span></span><br><span class="line">          <span class="attribute">p:connectionProperties</span>=<span class="value">"clientEncoding=UTF-8"</span></span><br><span class="line">          <span class="attribute">p:validationQuery</span>=<span class="value">"SELECT 1"</span></span><br><span class="line">          <span class="attribute">p:validationInterval</span>=<span class="value">"30000"</span></span><br><span class="line">          <span class="attribute">p:testOnBorrow</span>=<span class="value">"false"</span></span><br><span class="line">          <span class="attribute">p:testOnReturn</span>=<span class="value">"false"</span></span><br><span class="line">          <span class="attribute">p:testWhileIdle</span>=<span class="value">"true"</span></span><br><span class="line">          <span class="attribute">p:timeBetweenEvictionRunsMillis</span>=<span class="value">"10000"</span></span><br><span class="line">          <span class="attribute">p:minEvictableIdleTimeMillis</span>=<span class="value">"60000"</span></span><br><span class="line">          <span class="attribute">p:logAbandoned</span>=<span class="value">"false"</span></span><br><span class="line">          <span class="attribute">p:defaultAutoCommit</span>=<span class="value">"true"</span>/&gt;</span></span><br><span class="line">          </span><br><span class="line"><span class="tag">&lt;<span class="title">bean</span> <span class="attribute">id</span>=<span class="value">"dataSource"</span> <span class="attribute">parent</span>=<span class="value">"parentDataSource"</span></span><br><span class="line">          <span class="attribute">p:driverClassName</span>=<span class="value">"com.microsoft.sqlserver.jdbc.SQLServerDriver"</span></span><br><span class="line">          <span class="attribute">p:url</span>=<span class="value">"jdbc:sqlserver://127.0.0.1:1433;DatabaseName=test;sendStringParametersAsUnicode=false"</span></span><br><span class="line">          <span class="attribute">p:username</span>=<span class="value">"test"</span></span><br><span class="line">          <span class="attribute">p:password</span>=<span class="value">"test"</span></span><br><span class="line">          <span class="attribute">p:initialSize</span>=<span class="value">"100"</span></span><br><span class="line">          <span class="attribute">p:maxActive</span>=<span class="value">"500"</span></span><br><span class="line">          <span class="attribute">p:maxIdle</span>=<span class="value">"500"</span></span><br><span class="line">          <span class="attribute">p:minIdle</span>=<span class="value">"100"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>##样例</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">bean</span> <span class="attribute">id</span>=<span class="value">"parentDataSource"</span> <span class="attribute">abstract</span>=<span class="value">"true"</span> <span class="attribute">class</span>=<span class="value">"org.apache.tomcat.jdbc.pool.DataSource"</span> <span class="attribute">destroy-method</span>=<span class="value">"close"</span></span><br><span class="line">          <span class="attribute">p:maxWait</span>=<span class="value">"10000"</span></span><br><span class="line">          <span class="attribute">p:removeAbandoned</span>=<span class="value">"true"</span></span><br><span class="line">          <span class="attribute">p:removeAbandonedTimeout</span>=<span class="value">"180"</span></span><br><span class="line">          <span class="attribute">p:connectionProperties</span>=<span class="value">"clientEncoding=UTF-8"</span></span><br><span class="line">          <span class="attribute">p:validationQuery</span>=<span class="value">"SELECT 1"</span></span><br><span class="line">          <span class="attribute">p:validationInterval</span>=<span class="value">"30000"</span></span><br><span class="line">          <span class="attribute">p:testOnBorrow</span>=<span class="value">"false"</span></span><br><span class="line">          <span class="attribute">p:testOnReturn</span>=<span class="value">"false"</span></span><br><span class="line">          <span class="attribute">p:testWhileIdle</span>=<span class="value">"true"</span></span><br><span class="line">          <span class="attribute">p:timeBetweenEvictionRunsMillis</span>=<span class="value">"10000"</span></span><br><span class="line">          <span class="attribute">p:minEvictableIdleTimeMillis</span>=<span class="value">"60000"</span></span><br><span class="line">          <span class="attribute">p:logAbandoned</span>=<span class="value">"false"</span></span><br><span class="line">          <span class="attribute">p:defaultAutoCommit</span>=<span class="value">"true"</span>/&gt;</span></span><br><span class="line">          </span><br><span class="line"><span class="tag">&lt;<span class="title">bean</span> <span class="attribute">id</span>=<span class="value">"dataSource"</span> <span class="attribute">parent</span>=<span class="value">"parentDataSource"</span></span><br><span class="line">          <span class="attribute">p:driverClassName</span>=<span class="value">"com.microsoft.sqlserver.jdbc.SQLServerDriver"</span></span><br><span class="line">          <span class="attribute">p:url</span>=<span class="value">"jdbc:sqlserver://127.0.0.1:1433;DatabaseName=test;sendStringParametersAsUnicode=false"</span></span><br><span class="line">          <span class="attribute">p:username</span>=<span class="value">"test"</span></span><br><span class="line">          <span class="attribute">p:password</span>=<span class="value">"test"</span></span><br><span class="line">          <span class="attribute">p:initialSize</span>=<span class="value">"100"</span></span><br><span class="line">          <span class="attribute">p:maxActive</span>=<span class="value">"500"</span></span><br><span class="line">          <span class="attribute">p:maxIdle</span>=<span class="value">"500"</span></span><br><span class="line">          <span class="attribute">p:minIdle</span>=<span class="value">"100"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
         </div>
         <footer class="article-footer clearfix">
     
@@ -513,7 +515,7 @@ DBCP 太复杂，超过60个类，发展滞后。
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性"><span class="toc-number">2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样例"><span class="toc-number">3.</span> <span class="toc-text">样例</span></a></li></ol>
+  
   </div>
 
 <div id="asidepart">
@@ -553,7 +555,7 @@ DBCP 太复杂，超过60个类，发展滞后。
 		
 			<li><a href="/categories/心态/" title="心态">心态<sup>3</sup></a></li>
 		
-			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>11</sup></a></li>
+			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>12</sup></a></li>
 		
 		</ul>
 </div>
@@ -612,7 +614,7 @@ DBCP 太复杂，超过60个类，发展滞后。
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
+       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
     </div>
   </div>
 
