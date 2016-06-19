@@ -112,8 +112,8 @@ githubsdkman/sdkman-cli
               itemprop="datePublished">2016-06-18</time>
         
         更新日期:
-        <time datetime="2016-06-17T20:21:06.000Z"
-              itemprop="dateModified">2016-06-18</time>
+        <time datetime="2016-06-19T17:42:17.000Z"
+              itemprop="dateModified">2016-06-20</time>
         
     </p>
 </header>
@@ -122,14 +122,28 @@ githubsdkman/sdkman-cli
             
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前戏"><span class="toc-number">1.</span> <span class="toc-text">前戏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载GVM"><span class="toc-number">2.</span> <span class="toc-text">卸载GVM</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前戏"><span class="toc-number">1.</span> <span class="toc-text">前戏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载GVM"><span class="toc-number">1.1.</span> <span class="toc-text">卸载GVM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装SDKMAN"><span class="toc-number">2.</span> <span class="toc-text">安装SDKMAN</span></a></li></ol>
             </div>
             
             <blockquote><p>SDKMAN 是用来在类Unix 系统中管理多个版本的开发环境的工具。提供命令行接口来安装、切换、删除、列出候选版本。</p>
 <footer><strong>github</strong><cite><a href="https://github.com/sdkman/sdkman-cli" target="_blank" rel="external">sdkman/sdkman-cli</a></cite></footer></blockquote>
-<h3 id="前戏"><a href="#前戏" class="headerlink" title="前戏"></a>前戏</h3><p>###缘由<br>写这篇博文的原因是因为最近在使用GVM(SDKMAN的前身)管理版本的时候，一直提示我一个异常“gvm offline disable”，<br>在网上找了一通都没解决，后来才发现是GVM已经弃用了，连原先的服务域名<code>http://api.gvmtool.net</code>都无法访问了。<br>所以导致一直无法下载新的东西，只能使用已经安装好的SDK，无奈我本地的groovy版本太老了~~~</p>
-<p>本文不介绍GVM和SDKMAN是啥玩意，请自行谷歌</p>
-<h3 id="卸载GVM"><a href="#卸载GVM" class="headerlink" title="卸载GVM"></a>卸载GVM</h3>
+<h2 id="前戏"><a href="#前戏" class="headerlink" title="前戏"></a>前戏</h2><p>###缘由<br>写这篇博文的原因是因为最近在使用GVM(SDKMAN的前身)管理版本的时候，一直提示我一个异常“gvm offline disable”，<br>在网上找了一通都没解决，后来才发现是GVM已经弃用了，连原先的服务域名<code>http://api.gvmtool.net</code>都无法访问了。<br>所以导致一直无法下载新的东西，只能使用已经安装好的SDK，无奈我本地的groovy版本太老了…</p>
+<p>本文不介绍GVM和SDKMAN是啥玩意，请自行谷歌！！！</p>
+<h3 id="卸载GVM"><a href="#卸载GVM" class="headerlink" title="卸载GVM"></a>卸载GVM</h3><p>需要编辑者三个文件</p>
+<ul>
+<li>.bashrc</li>
+<li>.bash_profile</li>
+<li>.profile</li>
+</ul>
+<p>然后删除下面类似的代码<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!</span></span><br><span class="line">[[ <span class="operator">-s</span> <span class="string">"/Users/liuxing/.gvm/bin/gvm-init.sh"</span> ]] &amp;&amp; <span class="built_in">source</span> <span class="string">"/Users/liuxing/.gvm/bin/gvm-init.sh"</span></span><br></pre></td></tr></table></figure></p>
+<p>最后，删除[~/.gvm]或[~/.sdkman]文件夹</p>
+<h2 id="安装SDKMAN"><a href="#安装SDKMAN" class="headerlink" title="安装SDKMAN"></a>安装SDKMAN</h2><p>打开终端运行</p>
+<blockquote>
+<p>curl -s “<a href="https://get.sdkman.io" target="_blank" rel="external">https://get.sdkman.io</a>“ | bash</p>
+</blockquote>
+<p>然而，你也有可能会出现，一直卡着不动了…</p>
+<p>有两种方案<br>1.把https改为http，然后重试<br>2.从浏览器访问[<a href="https://get.sdkman.io]，然后把打开的内容另存为脚本，然后执行它" target="_blank" rel="external">https://get.sdkman.io]，然后把打开的内容另存为脚本，然后执行它</a></p>
+
         </div>
         <footer class="article-footer clearfix">
     
@@ -209,7 +223,7 @@ githubsdkman/sdkman-cli
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前戏"><span class="toc-number">1.</span> <span class="toc-text">前戏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载GVM"><span class="toc-number">2.</span> <span class="toc-text">卸载GVM</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前戏"><span class="toc-number">1.</span> <span class="toc-text">前戏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载GVM"><span class="toc-number">1.1.</span> <span class="toc-text">卸载GVM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装SDKMAN"><span class="toc-number">2.</span> <span class="toc-text">安装SDKMAN</span></a></li></ol>
   </div>
 
 <div id="asidepart">
