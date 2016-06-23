@@ -15,8 +15,8 @@
     
     <meta name="description" content="这个工具可让开发创建更强大的应用程序，特别是那些用C++模版开发的多线程应用程序，包括TCMalloc, heap-checker, heap-profiler 和cpu-profiler。
 开源中国社区Google PerfTools首页、文档和下载
-##前置依赖避免后续安装错误
-yum inst">
+前置依赖避免后续安装错误
+yum instal">
     
     
     
@@ -113,8 +113,8 @@ yum inst">
               itemprop="datePublished">2015-06-17</time>
         
         更新日期:
-        <time datetime="2015-06-16T16:53:16.000Z"
-              itemprop="dateModified">2015-06-17</time>
+        <time datetime="2016-06-23T08:06:48.000Z"
+              itemprop="dateModified">2016-06-23</time>
         
     </p>
 </header>
@@ -123,15 +123,15 @@ yum inst">
             
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前置依赖"><span class="toc-number">1.</span> <span class="toc-text">前置依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-number">3.1.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux安装软件"><span class="toc-number">3.2.</span> <span class="toc-text">linux安装软件</span></a></li></ol></li></ol>
             </div>
             
             <blockquote><p>这个工具可让开发创建更强大的应用程序，特别是那些用C++模版开发的多线程应用程序，包括<a href="http://www.oschina.net/p/tcmalloc" target="_blank" rel="external">TCMalloc</a>, heap-checker, heap-profiler 和cpu-profiler。</p>
 <footer><strong>开源中国社区</strong><cite><a href="http://www.oschina.net/p/perftools" target="_blank" rel="external">Google PerfTools首页、文档和下载</a></cite></footer></blockquote>
-<p>##前置依赖<br>避免后续安装错误</p>
+<h2 id="前置依赖"><a href="#前置依赖" class="headerlink" title="前置依赖"></a>前置依赖</h2><p>避免后续安装错误</p>
 <pre><code>yum install -y gcc*
 yum install zlib* openssl* -y   
-</code></pre><p>##安装<br>切换到工作目录</p>
+</code></pre><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>切换到工作目录</p>
 <pre><code>cd /usr/local/src 或 ~/src
 </code></pre><p>下载：</p>
 <pre><code>wget http://download.savannah.gnu.org/releases/libunwind/libunwind-0.99-alpha.tar.gz
@@ -164,10 +164,9 @@ echo &quot;/usr/local/lib&quot; &gt; /etc/ld.so.conf.d/usr_local_lib.conf
 <pre><code>export LD_PRELOAD=/usr/local/lib/libtcmalloc.so
 </code></pre><p>查看是否生效</p>
 <pre><code>/usr/sbin/lsof -n | grep tcmalloc
-</code></pre><p>##参考</p>
-<p>###示例<br><a href="https://www.centos.bz/2012/01/google-perftools-speed-up-mysql-tcmalloc/" target="_blank" rel="external">https://www.centos.bz/2012/01/google-perftools-speed-up-mysql-tcmalloc/</a><br><a href="http://blog.sina.com.cn/s/blog_8d05143b01012b87.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_8d05143b01012b87.html</a><br><a href="http://xkorey.iteye.com/blog/1648567" target="_blank" rel="external">http://xkorey.iteye.com/blog/1648567</a><br><a href="http://shopwwi.com/thread-673-1-1.html" target="_blank" rel="external">http://shopwwi.com/thread-673-1-1.html</a><br><a href="http://blog.csdn.net/wind19/article/details/10381291" target="_blank" rel="external">http://blog.csdn.net/wind19/article/details/10381291</a></p>
+</code></pre><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p><a href="https://www.centos.bz/2012/01/google-perftools-speed-up-mysql-tcmalloc/" target="_blank" rel="external">https://www.centos.bz/2012/01/google-perftools-speed-up-mysql-tcmalloc/</a><br><a href="http://blog.sina.com.cn/s/blog_8d05143b01012b87.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_8d05143b01012b87.html</a><br><a href="http://xkorey.iteye.com/blog/1648567" target="_blank" rel="external">http://xkorey.iteye.com/blog/1648567</a><br><a href="http://shopwwi.com/thread-673-1-1.html" target="_blank" rel="external">http://shopwwi.com/thread-673-1-1.html</a><br><a href="http://blog.csdn.net/wind19/article/details/10381291" target="_blank" rel="external">http://blog.csdn.net/wind19/article/details/10381291</a></p>
 <p><a href="http://blog.chinaunix.net/uid-20687780-id-3029851.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-20687780-id-3029851.html</a><br><a href="http://blog.hackroad.com/operations-engineer/linux_server/1285.html" target="_blank" rel="external">http://blog.hackroad.com/operations-engineer/linux_server/1285.html</a></p>
-<p>###linux安装软件<br><a href="http://www.cnblogs.com/chuncn/archive/2010/10/17/1853915.html" target="_blank" rel="external">http://www.cnblogs.com/chuncn/archive/2010/10/17/1853915.html</a></p>
+<h3 id="linux安装软件"><a href="#linux安装软件" class="headerlink" title="linux安装软件"></a>linux安装软件</h3><p><a href="http://www.cnblogs.com/chuncn/archive/2010/10/17/1853915.html" target="_blank" rel="external">http://www.cnblogs.com/chuncn/archive/2010/10/17/1853915.html</a></p>
 <p><a href="http://www.educity.cn/wenda/353955.html" target="_blank" rel="external">http://www.educity.cn/wenda/353955.html</a></p>
 
         </div>
@@ -257,7 +256,7 @@ echo &quot;/usr/local/lib&quot; &gt; /etc/ld.so.conf.d/usr_local_lib.conf
 
 <div id="toc" class="toc-aside">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前置依赖"><span class="toc-number">1.</span> <span class="toc-text">前置依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-number">3.1.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux安装软件"><span class="toc-number">3.2.</span> <span class="toc-text">linux安装软件</span></a></li></ol></li></ol>
 </div>
 
 <div id="asidepart">
@@ -292,7 +291,7 @@ echo &quot;/usr/local/lib&quot; &gt; /etc/ld.so.conf.d/usr_local_lib.conf
 	<p class="asidetitle">分类</p>
 		<ul>
 		
-			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>17</sup></a></li>
 		
 			<li><a href="/categories/MQ/" title="MQ">MQ<sup>1</sup></a></li>
 		
@@ -339,7 +338,11 @@ echo &quot;/usr/local/lib&quot; &gt; /etc/ld.so.conf.d/usr_local_lib.conf
 		
 			<li><a href="/tags/Java7/" title="Java7">Java7<sup>1</sup></a></li>
 		
+			<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+		
 			<li><a href="/tags/Jdbc/" title="Jdbc">Jdbc<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Lambda/" title="Lambda">Lambda<sup>1</sup></a></li>
 		
 			<li><a href="/tags/MQ/" title="MQ">MQ<sup>1</sup></a></li>
 		
@@ -351,10 +354,6 @@ echo &quot;/usr/local/lib&quot; &gt; /etc/ld.so.conf.d/usr_local_lib.conf
 		
 			<li><a href="/tags/RabbitMQ/" title="RabbitMQ">RabbitMQ<sup>1</sup></a></li>
 		
-			<li><a href="/tags/RestTemplate/" title="RestTemplate">RestTemplate<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Spring/" title="Spring">Spring<sup>5</sup></a></li>
-		
 		</ul>
 </div>
 
@@ -363,7 +362,7 @@ echo &quot;/usr/local/lib&quot; &gt; /etc/ld.so.conf.d/usr_local_lib.conf
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
+       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Java8/" style="font-size: 10px;">Java8</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
     </div>
   </div>
 

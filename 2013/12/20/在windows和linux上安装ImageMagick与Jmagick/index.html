@@ -13,8 +13,7 @@
     
     <meta name="author" content="liuxing">
     
-    <meta name="description" content="##Linux安装Jmagick
-###下载JMagick和ImageMagickhttp://downloads.jmagick.org/6.4.0/jmagick-6.4.0-src.tar.gzhttp://downloads.jmagick.org/6.4.0/ImageMagick-6.4">
+    <meta name="description" content="Linux安装Jmagick下载JMagick和ImageMagickhttp://downloads.jmagick.org/6.4.0/jmagick-6.4.0-src.tar.gzhttp://downloads.jmagick.org/6.4.0/ImageMagick-6.4.0-0.t">
     
     
     
@@ -111,8 +110,8 @@
               itemprop="datePublished">2013-12-20</time>
         
         更新日期:
-        <time datetime="2015-06-16T13:47:14.000Z"
-              itemprop="dateModified">2015-06-16</time>
+        <time datetime="2016-06-23T08:05:48.000Z"
+              itemprop="dateModified">2016-06-23</time>
         
     </p>
 </header>
@@ -121,15 +120,13 @@
             
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux安装Jmagick"><span class="toc-number">1.</span> <span class="toc-text">Linux安装Jmagick</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载JMagick和ImageMagick"><span class="toc-number">1.1.</span> <span class="toc-text">下载JMagick和ImageMagick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖包"><span class="toc-number">1.2.</span> <span class="toc-text">安装依赖包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装ImageMagick"><span class="toc-number">1.3.</span> <span class="toc-text">安装ImageMagick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装（需要几分钟时间）"><span class="toc-number">1.4.</span> <span class="toc-text">安装（需要几分钟时间）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装并配置JMagick"><span class="toc-number">1.5.</span> <span class="toc-text">安装并配置JMagick</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windows安装Jmagick"><span class="toc-number">2.</span> <span class="toc-text">windows安装Jmagick</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
             </div>
             
-            <p>##Linux安装Jmagick</p>
-<p>###下载JMagick和ImageMagick<br><a href="http://downloads.jmagick.org/6.4.0/jmagick-6.4.0-src.tar.gz" target="_blank" rel="external">http://downloads.jmagick.org/6.4.0/jmagick-6.4.0-src.tar.gz</a><br><a href="http://downloads.jmagick.org/6.4.0/ImageMagick-6.4.0-0.tar.gz" target="_blank" rel="external">http://downloads.jmagick.org/6.4.0/ImageMagick-6.4.0-0.tar.gz</a>  </p>
+            <h2 id="Linux安装Jmagick"><a href="#Linux安装Jmagick" class="headerlink" title="Linux安装Jmagick"></a>Linux安装Jmagick</h2><h3 id="下载JMagick和ImageMagick"><a href="#下载JMagick和ImageMagick" class="headerlink" title="下载JMagick和ImageMagick"></a>下载JMagick和ImageMagick</h3><p><a href="http://downloads.jmagick.org/6.4.0/jmagick-6.4.0-src.tar.gz" target="_blank" rel="external">http://downloads.jmagick.org/6.4.0/jmagick-6.4.0-src.tar.gz</a><br><a href="http://downloads.jmagick.org/6.4.0/ImageMagick-6.4.0-0.tar.gz" target="_blank" rel="external">http://downloads.jmagick.org/6.4.0/ImageMagick-6.4.0-0.tar.gz</a>  </p>
 <p>文件存到一个指定目录，如/usr/local/ImageMagick，该目录就是后续的安装目录</p>
-<p>###安装依赖包<br>yum install libpng<br>yum install libpng-devel<br>yum install libjpeg<br>yum install libjpeg-devel<br>yum install gd<br>yum install gd-devel<br>yum install libtiff<br>yum install libtiff-devel<br>yum install gcc （很重要）<br>yum install zlib(可选)<br>是zlib通用压缩库，图形格式png使用zlib中的deflate压缩算法</p>
-<p>###安装ImageMagick</p>
-<p><code>cd /usr/local/ImageMagick</code></p>
+<h3 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h3><p>yum install libpng<br>yum install libpng-devel<br>yum install libjpeg<br>yum install libjpeg-devel<br>yum install gd<br>yum install gd-devel<br>yum install libtiff<br>yum install libtiff-devel<br>yum install gcc （很重要）<br>yum install zlib(可选)<br>是zlib通用压缩库，图形格式png使用zlib中的deflate压缩算法</p>
+<h3 id="安装ImageMagick"><a href="#安装ImageMagick" class="headerlink" title="安装ImageMagick"></a>安装ImageMagick</h3><p><code>cd /usr/local/ImageMagick</code></p>
 <p>1.解压</p>
 <p><code>tar zxf ImageMagick-6.4.0-0.tar.gz</code></p>
 <p>2.切换到解压目录</p>
@@ -137,7 +134,7 @@
 <p>3.编译源文件</p>
 <p><code>./configure --prefix=/usr/local/ImageMagick --enable-shared --without-perl --with-quantum-depth=8</code></p>
 <p>configure参数说明：<br>–enable-shared 编译成共享库(建议)<br>–disable-static 不编译成静态库<br>–with-quantum-depth=8 使用8位色深。我的1200万像素数码相机，照出的图片就是8位色深。(建议)<br>–with-windows-font-dir=目录 ，指明字体文件的目录（后面将人工复制中文字体文件到这个目录）(可选)<br>–disable-openmp 禁用多线程，使用多线程性能并没有提高，但CPU占用达到了100%，所以禁用了。(可选)</p>
-<p>###安装（需要几分钟时间）<br><code>make &amp;&amp; make install</code></p>
+<h3 id="安装（需要几分钟时间）"><a href="#安装（需要几分钟时间）" class="headerlink" title="安装（需要几分钟时间）"></a>安装（需要几分钟时间）</h3><p><code>make &amp;&amp; make install</code></p>
 <p>由于ImageMagic被安装在我们自行指定的/usr/local/ImageMagick，后面安装JMagic会找不到需要用到的ImageMagic的命令和库，因此需要配置一下操作系统： </p>
 <p>1.编辑/etc/profile里面的PATH环境变量：<br><code>vi /etc/profile</code></p>
 <p>结尾加入：<br><code>export PATH=/usr/local/ImageMagick/bin:$PATH</code></p>
@@ -147,8 +144,7 @@
 <p>4.重新登录<br>5.查看版本：<br><code>convert --version</code></p>
 <p>例如：</p>
 <p><code>convert —version</code><br><code>Version: ImageMagick 6.4.0 12/27/11 Q16 http://www.imagemagick.org</code><br><code>Copyright: Copyright (C) 1999-2008 ImageMagick Studio LLC</code></p>
-<p>###安装并配置JMagick</p>
-<p>1.解压<br><code>tar xzvf jmagick-6.4.0-src.tar.gz</code></p>
+<h3 id="安装并配置JMagick"><a href="#安装并配置JMagick" class="headerlink" title="安装并配置JMagick"></a>安装并配置JMagick</h3><p>1.解压<br><code>tar xzvf jmagick-6.4.0-src.tar.gz</code></p>
 <p>2.解压源码移入/usr/local/jmagick<br><code>mv 6.4.0/ /usr/local/jmagick</code></p>
 <p>3.切换到目录<br><code>cd /usr/local/jmagick/</code></p>
 <p>4.查看所有环境变量<br><code>env</code></p>
@@ -159,12 +155,11 @@
 <p>8.拷贝依赖文件到jdk<br><code>cp /usr/local/jmagick/lib/libJMagick-6.4.0.so $JAVA_HOME/jre/lib/amd64/libJMagick.so</code><br><code>cp /usr/local/jmagick/lib/jmagick-6.4.0.jar $JRE_HOME/lib/jmagick.jar</code></p>
 <p>备注：</p>
 <p><code>$JAVA_HOME=/usr/java/jdk1.7.0/</code><br><code>$JRE_HOME=$JAVA_HOME/jre</code></p>
-<p>##windows安装Jmagick </p>
-<p>以ImageMagick-6.3.9-0-Q16-windows-dll.exe安装到windows为例，</p>
+<h2 id="windows安装Jmagick"><a href="#windows安装Jmagick" class="headerlink" title="windows安装Jmagick"></a>windows安装Jmagick</h2><p>以ImageMagick-6.3.9-0-Q16-windows-dll.exe安装到windows为例，</p>
 <p>下载ImageMagick-6.3.9-0-Q16-windows-dll.exe和jmagick-win-6.3.9-Q16.zip</p>
 <p>1.下载ImageMagick-6.3.9-0-Q16-windows-dll.exe安装，在那个多选界面请选择所有内容(是一些依赖的库，避免出现不可预知的错误)。<br>2.检查看系统环境变量PATH里面是否添加了环境变量，如果没有需要添加安装路径。<br>3.将jmagick.dll拷贝到C:/windows/system32目录下。<br>4.将jmagick.dll拷贝到%TOMECAT%/bin目录下。<br>5.将jmagick.dll拷贝到%JAVA_HOME%/bin目录下。<br>6.还要把jmagick.jar复制到%JAVA_HOME%/jre/lib/ext下<br>7.还要把jmagick.jar复制到%TOMCAT%/lib下<br>8.使用时将jmagick.jar拷贝到项目，在类里加上静态块，用系统的类加载器指定，否则会出现类无法加载。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">     <span class="comment">// 如果部署到WEB应用，就要加下面这句。不然会报“UnsatisfiedLinkError: no JMagick in</span></span><br><span class="line">    <span class="comment">// java.library.path”。</span></span><br><span class="line">    System. setProperty(<span class="string">"jmagick.systemclassloader"</span>, <span class="string">"no"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##参考<br><a href="http://xlogin.blog.51cto.com/3473583/717321" target="_blank" rel="external">http://xlogin.blog.51cto.com/3473583/717321</a><br><a href="http://elf8848.iteye.com/blog/455675" target="_blank" rel="external">http://elf8848.iteye.com/blog/455675</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://xlogin.blog.51cto.com/3473583/717321" target="_blank" rel="external">http://xlogin.blog.51cto.com/3473583/717321</a><br><a href="http://elf8848.iteye.com/blog/455675" target="_blank" rel="external">http://elf8848.iteye.com/blog/455675</a></p>
 
         </div>
         <footer class="article-footer clearfix">
@@ -253,7 +248,7 @@
 
 <div id="toc" class="toc-aside">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux安装Jmagick"><span class="toc-number">1.</span> <span class="toc-text">Linux安装Jmagick</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载JMagick和ImageMagick"><span class="toc-number">1.1.</span> <span class="toc-text">下载JMagick和ImageMagick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖包"><span class="toc-number">1.2.</span> <span class="toc-text">安装依赖包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装ImageMagick"><span class="toc-number">1.3.</span> <span class="toc-text">安装ImageMagick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装（需要几分钟时间）"><span class="toc-number">1.4.</span> <span class="toc-text">安装（需要几分钟时间）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装并配置JMagick"><span class="toc-number">1.5.</span> <span class="toc-text">安装并配置JMagick</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windows安装Jmagick"><span class="toc-number">2.</span> <span class="toc-text">windows安装Jmagick</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
 </div>
 
 <div id="asidepart">
@@ -288,7 +283,7 @@
 	<p class="asidetitle">分类</p>
 		<ul>
 		
-			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>17</sup></a></li>
 		
 			<li><a href="/categories/MQ/" title="MQ">MQ<sup>1</sup></a></li>
 		
@@ -335,7 +330,11 @@
 		
 			<li><a href="/tags/Java7/" title="Java7">Java7<sup>1</sup></a></li>
 		
+			<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+		
 			<li><a href="/tags/Jdbc/" title="Jdbc">Jdbc<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Lambda/" title="Lambda">Lambda<sup>1</sup></a></li>
 		
 			<li><a href="/tags/MQ/" title="MQ">MQ<sup>1</sup></a></li>
 		
@@ -347,10 +346,6 @@
 		
 			<li><a href="/tags/RabbitMQ/" title="RabbitMQ">RabbitMQ<sup>1</sup></a></li>
 		
-			<li><a href="/tags/RestTemplate/" title="RestTemplate">RestTemplate<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Spring/" title="Spring">Spring<sup>5</sup></a></li>
-		
 		</ul>
 </div>
 
@@ -359,7 +354,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
+       <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Java8/" style="font-size: 10px;">Java8</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
     </div>
   </div>
 
