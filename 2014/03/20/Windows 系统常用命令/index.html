@@ -119,11 +119,6 @@
         <div class="article-content">
             
             
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#必备命令"><span class="toc-number">1.</span> <span class="toc-text">必备命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他常用命令"><span class="toc-number">2.</span> <span class="toc-text">其他常用命令</span></a></li></ol>
-            </div>
-            
             <p>来自小辉哥</p>
 <h2 id="必备命令"><a href="#必备命令" class="headerlink" title="必备命令"></a>必备命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">msinfo32,查看系统各种信息（环境变量、驱动等等）</span><br><span class="line">gpedit.msc 组策略编辑</span><br><span class="line">gpupdate /force 组策略更新 </span><br><span class="line">mstsc 远程桌面 </span><br><span class="line">mmc控制台 </span><br><span class="line">services.msc 服务配置 </span><br><span class="line">taskmgr 任务管理器</span><br><span class="line">regedit：注册表编辑器</span><br><span class="line">compmgmt.msc 计算机管理</span><br><span class="line">devmgmt.msc 设备管理</span><br><span class="line">ServerManager.msc 服务器管理</span><br><span class="line">gpmc.msc组策略管理</span><br><span class="line">ipconfig 查看ip地址信息</span><br><span class="line">tasklist /M </span><br><span class="line">    显示进程引用的所有dll</span><br><span class="line"></span><br><span class="line">tasklist /SVC </span><br><span class="line">    显示每个进程里的服务。配合find 命令，可以筛选指定服务的进程信息 </span><br><span class="line">    例如： tasklist /SVC | find <span class="string">"AjaxCenter"</span></span><br><span class="line"></span><br><span class="line">fsutil fsinfo ntfsinfo c:</span><br><span class="line">    查看文件系统信息，可知道IO block size,对程序优化也有借鉴作用。</span><br></pre></td></tr></table></figure>
 <h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sysdm.cpl：查看计算机属性</span><br><span class="line">dxdiag ： 查看DirectX相关信息,也可以查看内存</span><br><span class="line">devmgmt.msc： 设备管理</span><br><span class="line">wmic diskdrive  可以看出来磁盘和大小.</span><br><span class="line">Wmic logicaldisk 可以看出来磁盘和大小</span><br><span class="line">wmic volume .可以看到有几个盘，每一个盘的文件系统和剩余空间</span><br><span class="line">fsutil volume diskfree c: 每个盘的剩余空间量，其实上一个命令也可以查看的</span><br><span class="line">wmic cpu 上面显示的有位宽，最大始终频率， 生产厂商，二级缓存等信息</span><br><span class="line">wmic memorychip 查看Windows7和<span class="number">2003</span>的内存属性  </span><br><span class="line">WMIC MEMLOGICAL 查看xp内存命令</span><br><span class="line">wmic bios  BIOS信息</span><br><span class="line">systeminfo 详细系统信息，内存，显卡，处理器</span><br><span class="line">wmic  process get Caption,name,commandline | find <span class="string">"red5"</span>,可以获取进程调用命令的详细情况</span><br><span class="line">ver 查看操作系统版本。</span><br></pre></td></tr></table></figure>
@@ -212,11 +207,6 @@
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
-<div id="toc" class="toc-aside">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#必备命令"><span class="toc-number">1.</span> <span class="toc-text">必备命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他常用命令"><span class="toc-number">2.</span> <span class="toc-text">其他常用命令</span></a></li></ol>
-</div>
-
 <div id="asidepart">
     <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
     <aside class="clearfix">
@@ -249,7 +239,7 @@
 	<p class="asidetitle">分类</p>
 		<ul>
 		
-			<li><a href="/categories/Java/" title="Java">Java<sup>18</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>19</sup></a></li>
 		
 			<li><a href="/categories/MQ/" title="MQ">MQ<sup>1</sup></a></li>
 		
@@ -320,7 +310,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/AMQP/" style="font-size: 10px;">AMQP</a> <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Java8/" style="font-size: 10px;">Java8</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 10px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/rabbitmq/" style="font-size: 10px;">rabbitmq</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
+       <a href="/tags/AMQP/" style="font-size: 10px;">AMQP</a> <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Java8/" style="font-size: 10px;">Java8</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/OkHttp/" style="font-size: 10px;">OkHttp</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 12.5px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 12.5px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/rabbitmq/" style="font-size: 10px;">rabbitmq</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
     </div>
   </div>
 
@@ -397,7 +387,7 @@
     </div>
     <footer><div id="footer">
     
-    <p class="copyright"> © 2017
+    <p class="copyright"> © 2018
         
         <a href="http://liuxing.info" target="_blank" title="liuxing">liuxing</a>
         
@@ -433,8 +423,6 @@
                 m.removeClass('moveMain');
                 a.css('display', 'block').removeClass('fadeOut');
                 o.css('display', 'none');
-                
-                $('#toc.toc-aside').css('display', 'none');
                 
             }
         });

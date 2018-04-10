@@ -874,7 +874,6 @@ article .article-content .kb {
   color: #8f8f8f;
   -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 0 0 2px #fff inset;
   box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 0 0 2px #fff inset;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   display: inline-block;
   margin: 0 0.1em;
@@ -1175,7 +1174,6 @@ footer.article-footer {
   margin-left: -7.5em;
   background: #fff;
   border: 2px solid #ccc;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   display: inline-block;
   opacity: 0;
@@ -1406,7 +1404,6 @@ section.comment {
   line-height: 1em;
   font-size: 0.8em;
   float: right;
-  -webkit-border-radius: 6px;
   border-radius: 6px;
   border: 1px solid #c5c8c6;
 }
@@ -1480,7 +1477,6 @@ section.comment {
   display: block;
   color: #fff;
   border: 1px solid #fff;
-  -webkit-border-radius: 5px;
   border-radius: 5px;
   background: #ea6753;
   padding: 0.2em 0.55em;
@@ -1781,7 +1777,6 @@ section.comment {
   -webkit-background-size: 6.875em 6.875em;
   -moz-background-size: 6.875em 6.875em;
   background-size: 6.875em 6.875em;
-  -webkit-border-radius: 3.4375em;
   border-radius: 3.4375em;
   -webkit-transition: -webkit-transform 2s ease-out;
   -moz-transition: -moz-transform 2s ease-out;
@@ -1810,7 +1805,6 @@ section.comment {
     -webkit-background-size: 9.166666666666666em 9.166666666666666em;
     -moz-background-size: 9.166666666666666em 9.166666666666666em;
     background-size: 9.166666666666666em 9.166666666666666em;
-    -webkit-border-radius: 4.583333333333333em;
     border-radius: 4.583333333333333em;
     margin: 0 auto;
   }
@@ -1900,7 +1894,6 @@ section.comment {
   background: transparent;
   border: 6px solid #000;
   border: 6px solid rgba(0,0,0,0.5);
-  -webkit-border-radius: 100%;
   border-radius: 100%;
   position: fixed;
   right: 5px;
@@ -1977,7 +1970,6 @@ footer {
   -webkit-background-size: 6.875em 6.875em;
   -moz-background-size: 6.875em 6.875em;
   background-size: 6.875em 6.875em;
-  -webkit-border-radius: 3.4375em;
   border-radius: 3.4375em;
   -webkit-transition: -webkit-transform 2s ease-out;
   -moz-transition: -moz-transform 2s ease-out;
@@ -2053,7 +2045,6 @@ footer {
 }
 .copyright {
   background: #ddd;
-  -webkit-border-radius: 6px;
   border-radius: 6px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -2083,7 +2074,6 @@ footer {
   line-height: 1.5;
   font-size: 90%;
   border: 1px solid #c5c8c6;
-  -webkit-border-radius: 6px;
   border-radius: 6px;
 }
 .article-content .highlight .gutter pre,
@@ -2260,7 +2250,6 @@ pre .xml .cdata {
   width: 54px !important;
   height: 54px !important;
   border: 2px solid #dbdbdb !important;
-  -webkit-border-radius: 27px !important;
   border-radius: 27px !important;
   -webkit-transition: -webkit-transform 0.5s ease-out !important;
   -moz-transition: -moz-transform 0.5s ease-out !important;
@@ -2280,7 +2269,6 @@ pre .xml .cdata {
 .ds-children .ds-avatar img {
   width: 30px !important;
   height: 30px !important;
-  -webkit-border-radius: 15px !important;
   border-radius: 15px !important;
   -webkit-transition: -webkit-transform 0.5s ease-out !important;
   -moz-transition: -moz-transform 0.5s ease-out !important;
