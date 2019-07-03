@@ -1,0 +1,697 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta name="uyan_auth" content="4a83c5c6c3">
+    <meta name="baidu-site-verification" content="CvWZNC2obZ">
+    <meta name="baidu_union_verify" content="d1952c66cf48912e21c18c7c581f382a">
+    <meta name="google-site-verification" content="HkWRO12UFpAhchYbHb-T6PxRSroKfbjN4XIGs0IqCes">
+  
+    <title>重试机制的分析 | liuxing&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="liuxing">
+    
+    <meta name="description" content="记录一下今天碰到的问题
+
+前言对于经常跟网络编程打交道的你来说，并不是你的每次请求，服务端都会给你想要的结果。重试机制虽然并不能解决这种情况，但是却可以大大减少这种情况的发生。
+缘由最近几天发现系统里面的solr数据频繁的出现数据同步不及时，统计数据以及分析日志后发现
+
+近期合并了几家公司，数据量增">
+    
+    
+    
+    
+    <link rel="alternate" href="/atom.xml" title="liuxing&#39;s blog" type="application/atom+xml">
+    
+    
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?e0270889606c4b2a973302b9badc62a1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+
+</head></html>
+  <body>
+    <header>
+      <div>
+    
+
+    <div id="textlogo">
+        <h1 class="site-name"><a href="/" title="liuxing&#39;s blog">liuxing&#39;s blog</a></h1>
+        <a class="blog-motto">
+            
+            青春须早为,岂能长少年！
+            
+        </a>
+    </div>
+
+    <div class="navbar"><a class="navbutton navmobile" href="#" title="菜单"></a></div>
+
+    <nav class="animated">
+        <ul>
+            <ul>
+                
+                    <li><a href="/">首页</a></li>
+                
+                    <li><a href="/archives">归档</a></li>
+                
+                    <li><a href="/tags">标签</a></li>
+                
+                    <li><a href="/categories">分类</a></li>
+                
+                    <li><a href="/about">关于</a></li>
+                
+                <li>
+                    <!--谷歌站内搜索-->
+                    
+                        <form class="search" action="/search/index.html" method="get" target="_blank" accept-charset="utf-8">
+                            <label>Search</label>
+                            <input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索"/>
+                        </form>
+                    
+
+                    <!--百度站内搜索-->
+                    
+
+                    <!--谷歌搜索，指定site-->
+                    
+                </li>
+            </ul>
+    </nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+    <article itemprop="articleBody">
+        <header class="article-info clearfix">
+    <h1 itemprop="name">
+        
+        <a href="/ 2015/07/08/重试机制的分析" title="重试机制的分析" itemprop="url">重试机制的分析</a>
+        
+    </h1>
+
+    <p class="article-author">By
+        
+        <a href="https://plus.google.com/u/0/111580157002745346775/posts?rel=author" title="liuxing"
+           target="_blank" itemprop="author">liuxing</a>
+        
+    </p>
+
+    <p class="article-time">
+        <time datetime="2015-07-07T16:22:00.000Z"
+              itemprop="datePublished">2015-07-08</time>
+        
+        更新日期:
+        <time datetime="2019-07-02T01:06:43.331Z"
+              itemprop="dateModified">2019-07-02</time>
+        
+    </p>
+</header>
+        <div class="article-content">
+            
+            
+            <p><em>记录一下今天碰到的问题</em></p>
+<hr>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>对于经常跟网络编程打交道的你来说，并不是你的每次请求，服务端都会给你想要的结果。<br>重试机制虽然并不能解决这种情况，但是却可以大大减少这种情况的发生。</p>
+<h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>最近几天发现系统里面的solr数据频繁的出现数据同步不及时，统计数据以及分析日志后发现</p>
+<ul>
+<li>近期合并了几家公司，数据量增加了1倍多，200w+ &gt; 400w+（数据量增加后优化搜索，可以另起话题）。</li>
+<li>访问用户增加后随之网络IO不稳定（暂定）。</li>
+<li>使用的是其他同事基于solrj开发的工具包，不知是否是最优化配置。</li>
+<li>提交数据后出现异常，只是简单的捕获处理。</li>
+</ul>
+<h2 id="土办法"><a href="#土办法" class="headerlink" title="土办法"></a>土办法</h2><p>先简单的加上一个重试机制。</p>
+<p>原代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    inquirySolrService.commitBean(bean);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    LOGGER.error(e.getMessage(), e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>处理后</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> retry = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">while</span> (retry &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        inquirySolrService.commitBean(bean);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        LOGGER.error(e.getMessage(), e);</span><br><span class="line">        retry --;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本来这样已经满足了，但是这种逻辑在好几个地方都有，同样的代码，想想就恶心。<br>想起在使用Spring RestTemplate / HttpClient的时候，可以设置一个重试的处理器。<br>重试机制是理解的，但是很好奇Spring到底是怎么处理的？毕竟大神们整的东西还是有学习的地方的！</p>
+<h2 id="对RestTemplate重试的分析"><a href="#对RestTemplate重试的分析" class="headerlink" title="对RestTemplate重试的分析"></a>对RestTemplate重试的分析</h2><h3 id="处理器分析"><a href="#处理器分析" class="headerlink" title="处理器分析"></a>处理器分析</h3><p><strong>具体使用配置</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用默认的重试处理器</span></span><br><span class="line">httpClientBuilder.setRetryHandler(<span class="keyword">new</span> DefaultHttpRequestRetryHandler(<span class="number">2</span>, <span class="keyword">true</span>));</span><br></pre></td></tr></table></figure>
+
+<p><strong>HttpRequestRetryHandler</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HttpRequestRetryHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">retryRequest</span><span class="params">(IOException exception, <span class="keyword">int</span> executionCount, HttpContext context)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>DefaultHttpRequestRetryHandler</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultHttpRequestRetryHandler</span> <span class="keyword">implements</span> <span class="title">HttpRequestRetryHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> DefaultHttpRequestRetryHandler INSTANCE = <span class="keyword">new</span> DefaultHttpRequestRetryHandler();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重试次数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> retryCount;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否重试</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">boolean</span> requestSentRetryEnabled;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这几类异常不重试</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Set&lt;Class&lt;? extends IOException&gt;&gt; nonRetriableClasses;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">DefaultHttpRequestRetryHandler</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> <span class="keyword">int</span> retryCount,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> <span class="keyword">boolean</span> requestSentRetryEnabled,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> Collection&lt;Class&lt;? extends IOException&gt;&gt; clazzes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.retryCount = retryCount;</span><br><span class="line">        <span class="keyword">this</span>.requestSentRetryEnabled = requestSentRetryEnabled;</span><br><span class="line">        <span class="keyword">this</span>.nonRetriableClasses = <span class="keyword">new</span> HashSet&lt;Class&lt;? extends IOException&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">final</span> Class&lt;? extends IOException&gt; clazz: clazzes) &#123;</span><br><span class="line">            <span class="keyword">this</span>.nonRetriableClasses.add(clazz);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DefaultHttpRequestRetryHandler</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> retryCount, <span class="keyword">final</span> <span class="keyword">boolean</span> requestSentRetryEnabled)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(retryCount, requestSentRetryEnabled, Arrays.asList(</span><br><span class="line">                InterruptedIOException.class,</span><br><span class="line">                UnknownHostException.class,</span><br><span class="line">                ConnectException.class,</span><br><span class="line">                SSLException.class));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 默认配置3次重试，但是没有开启</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DefaultHttpRequestRetryHandler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(<span class="number">3</span>, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重试处理的核心方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">retryRequest</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> IOException exception,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> <span class="keyword">int</span> executionCount,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> HttpContext context)</span> </span>&#123;</span><br><span class="line">        Args.notNull(exception, <span class="string">"Exception parameter"</span>);</span><br><span class="line">        Args.notNull(context, <span class="string">"HTTP context"</span>);</span><br><span class="line">        <span class="keyword">if</span> (executionCount &gt; <span class="keyword">this</span>.retryCount) &#123;</span><br><span class="line">            <span class="comment">// Do not retry if over max retry count</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.nonRetriableClasses.contains(exception.getClass())) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">final</span> Class&lt;? extends IOException&gt; rejectException : <span class="keyword">this</span>.nonRetriableClasses) &#123;</span><br><span class="line">                <span class="keyword">if</span> (rejectException.isInstance(exception)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">final</span> HttpClientContext clientContext = HttpClientContext.adapt(context);</span><br><span class="line">        <span class="keyword">final</span> HttpRequest request = clientContext.getRequest();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(requestIsAborted(request))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (handleAsIdempotent(request)) &#123;</span><br><span class="line">            <span class="comment">// Retry if the request is considered idempotent</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!clientContext.isRequestSent() || <span class="keyword">this</span>.requestSentRetryEnabled) &#123;</span><br><span class="line">            <span class="comment">// Retry if the request has not been sent fully or</span></span><br><span class="line">            <span class="comment">// if it's OK to retry methods that have been sent</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// otherwise do not retry</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 其他方法略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>分析</strong><br>这个处理器的逻辑不是很复杂，配置重试次数和重试开关，某几种异常不进行重试等等，都是Http请求特有的业务处理方法。<br>对于排除的异常配置，很好理解，就是非常明确这几类异常没必要重试了。</p>
+<h3 id="底层运行逻辑"><a href="#底层运行逻辑" class="headerlink" title="底层运行逻辑"></a>底层运行逻辑</h3><p>其实RestTemplate是没有重试的运行逻辑（配置httpclient的方式），底层还是httpclient。<br>底层有好几个地方调用了<code>retryRequest()</code>逻辑，重试处理逻辑大致一样，挑RetryExec这个类吧！因为它代码比较少！</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RetryExec</span> <span class="keyword">implements</span> <span class="title">ClientExecChain</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Log log = LogFactory.getLog(getClass());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ClientExecChain requestExecutor;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> HttpRequestRetryHandler retryHandler;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RetryExec</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> ClientExecChain requestExecutor,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> HttpRequestRetryHandler retryHandler)</span> </span>&#123;</span><br><span class="line">        Args.notNull(requestExecutor, <span class="string">"HTTP request executor"</span>);</span><br><span class="line">        Args.notNull(retryHandler, <span class="string">"HTTP request retry handler"</span>);</span><br><span class="line">        <span class="keyword">this</span>.requestExecutor = requestExecutor;</span><br><span class="line">        <span class="keyword">this</span>.retryHandler = retryHandler;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CloseableHttpResponse <span class="title">execute</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> HttpRoute route,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> HttpRequestWrapper request,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> HttpClientContext context,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">final</span> HttpExecutionAware execAware)</span> <span class="keyword">throws</span> IOException, HttpException </span>&#123;</span><br><span class="line">        Args.notNull(route, <span class="string">"HTTP route"</span>);</span><br><span class="line">        Args.notNull(request, <span class="string">"HTTP request"</span>);</span><br><span class="line">        Args.notNull(context, <span class="string">"HTTP context"</span>);</span><br><span class="line">        <span class="keyword">final</span> Header[] origheaders = request.getAllHeaders();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> execCount = <span class="number">1</span>;; execCount++) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.requestExecutor.execute(route, request, context, execAware);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> IOException ex) &#123;</span><br><span class="line">                <span class="comment">// 检查可确定的中断逻辑，退出</span></span><br><span class="line">                <span class="comment">// 代码略</span></span><br><span class="line">                </span><br><span class="line">                <span class="comment">// 校验是否重试</span></span><br><span class="line">                <span class="keyword">if</span> (retryHandler.retryRequest(ex, execCount, context)) &#123;</span><br><span class="line">                    <span class="comment">// 记录日志和其他业务方法</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 业务处理，并抛出异常，退出</span></span><br><span class="line">                    <span class="comment">// 代码略</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本质上还是一个递归的逻辑，方法定义一个execCount计数，正常执行完毕就跳出循环。<br>出现异常时，用计数器去检查是否重试和比较重试次数，不通过就抛异常跳出循环。<br>好吧，我也没想到其实就是这样的！<br>考虑到一些其他框架里面都有重试的机制，逻辑应该都差不多，差异的只是对自己特有业务规则的处理。</p>
+<p>httpclient底层执行请求时还有几个有意思的重试。<br>它把建立连接和请求内容等步骤又额外拆分成了独立的几个重试。<br>我猜想这样的好处是避免一个步骤出错导致整个流程重复执行。</p>
+<h2 id="提取重试执行工具"><a href="#提取重试执行工具" class="headerlink" title="提取重试执行工具"></a>提取重试执行工具</h2><p>本着重复代码不要写第二次的原则，还是硬着头皮提取了一个重试执行工具</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@title</span>：RetryUtil重试执行工具类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>：liuxing</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>：2015-07-08 01:55</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RetryUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(RetryUtil.class);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ExecuteFunction</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重试执行</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> retryCount</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> interval</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> timeUnit</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> throwIfFail</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> function</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">retry</span><span class="params">(<span class="keyword">int</span> retryCount, <span class="keyword">long</span> interval, TimeUnit timeUnit, <span class="keyword">boolean</span> throwIfFail, ExecuteFunction function)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (function == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; retryCount; i++) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                function.execute();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == retryCount - <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (throwIfFail) &#123;</span><br><span class="line">                        <span class="keyword">throw</span> e;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (timeUnit != <span class="keyword">null</span> &amp;&amp; interval &gt; <span class="number">0L</span>) &#123;</span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            timeUnit.sleep(interval);</span><br><span class="line">                        &#125; <span class="keyword">catch</span> (InterruptedException e1) &#123;</span><br><span class="line">                            LOGGER.error(e1.getMessage(), e1);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 有间隔的重试</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> retryCount</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> interval</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> timeUnit</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> handler</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">retry</span><span class="params">(<span class="keyword">int</span> retryCount, <span class="keyword">long</span> interval, TimeUnit timeUnit, ExecuteFunction handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        retry(retryCount, interval, timeUnit, <span class="keyword">false</span>, handler);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 不间隔重试</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> retryCount</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> function</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">retry</span><span class="params">(<span class="keyword">int</span> retryCount, ExecuteFunction function)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        retry(retryCount, -<span class="number">1</span>, <span class="keyword">null</span>, function);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用重试工具执行方法，对比下来可读性好了很多</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> retry = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">while</span> (retry &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        inquirySolrService.commitBean(bean);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        LOGGER.error(e.getMessage(), e);</span><br><span class="line">        retry --;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    RetryUtil.retry(<span class="number">3</span>, <span class="number">50L</span>, TimeUnit.MILLISECONDS, () -&gt; &#123;</span><br><span class="line">        inquirySolrService.commitBean(bean);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    LOGGER.error(e.getMessage(), e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>PS：保持好奇心，平常碰到的简单问题也记录总结一下，挺有意思的！</em></p>
+
+        </div>
+        <footer class="article-footer clearfix">
+    
+<div class="article-tags">
+    
+    <span></span> <a href="/tags/Java/">Java</a><a href="/tags/重试工具/">重试工具</a>
+</div>
+
+
+
+<div class="article-categories">
+    <span></span>
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+</div>
+
+
+
+    <div class="article-share" id="share">
+    
+        
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_douban"></a>
+    <a class="jiathis_button_evernote"></a>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a href="http://www.jiathis.com/share?uid=2038458" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+    var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2038458" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+
+    
+
+    <!--默认的分享-->
+    <!--<div data-url="http://liuxing.info/2015/07/08/重试机制的分析"-->
+         <!--data-title=" 重试机制的分析 |  liuxing&#39;s blog"-->
+         <!--data-tsina="1809603852" class="share clearfix">-->
+    <!--</div>-->
+</div>
+</footer>
+    </article>
+    
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/09/09/shadowsocks科学上网" title="shadowsocks科学上网">
+  <strong>上一篇:</strong><br/>
+  <span>
+  shadowsocks科学上网</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/07/05/Spring JMS粗译"  title="Spring_JMS粗译">
+ <strong>下一篇:</strong><br/>
+ <span>Spring_JMS粗译
+</span>
+</a>
+</div>
+
+</nav>
+
+    
+    <section class="comment">
+        
+        
+            <div class="ds-thread" data-title="重试机制的分析" data-thread-key="重试机制的分析"
+                 data-author-key="liuxing"
+                 data-url="http://liuxing.info/2015/07/08/重试机制的分析"></div>
+        
+    </section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+    <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+    <aside class="clearfix">
+        <div id="authorInfo">
+            
+                <div class="author-logo"></div>
+            
+            <div class="social-list" class="clearfix">
+                
+                    <a href="http://weibo.com/1809603852" target="_blank" title="weibo"></a>
+                
+                
+                
+                    <a href="https://github.com/liuxing87327" target="_blank" title="github"></a>
+                
+                
+                
+            </div>
+        </div>
+
+        <div id="authorInfo">
+            <h4 class="widget-title">赞助我</h4>
+            <div class="widget-content">
+                <img src="/images/qr_alipay.png" style="width:100%;">
+            </div>
+        </div>
+        
+        
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>19</sup></a></li>
+		
+			<li><a href="/categories/MQ/" title="MQ">MQ<sup>1</sup></a></li>
+		
+			<li><a href="/categories/书摘/" title="书摘">书摘<sup>2</sup></a></li>
+		
+			<li><a href="/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		
+			<li><a href="/categories/前端/" title="前端">前端<sup>4</sup></a></li>
+		
+			<li><a href="/categories/心态/" title="心态">心态<sup>3</sup></a></li>
+		
+			<li><a href="/categories/系统配置/" title="系统配置">系统配置<sup>12</sup></a></li>
+		
+		</ul>
+</div>
+
+        
+        
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/AMQP/" title="AMQP">AMQP<sup>1</sup></a></li>
+		
+			<li><a href="/tags/APR/" title="APR">APR<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+		
+			<li><a href="/tags/CNZZ/" title="CNZZ">CNZZ<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Cache/" title="Cache">Cache<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DNSPod/" title="DNSPod">DNSPod<sup>1</sup></a></li>
+		
+			<li><a href="/tags/GIT/" title="GIT">GIT<sup>1</sup></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/" title="GitHub Pages">GitHub Pages<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Godaddy/" title="Godaddy">Godaddy<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		
+			<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Java7/" title="Java7">Java7<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Jdbc/" title="Jdbc">Jdbc<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Lambda/" title="Lambda">Lambda<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MQ/" title="MQ">MQ<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MemAdmin/" title="MemAdmin">MemAdmin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Memcached/" title="Memcached">Memcached<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+        
+        
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/AMQP/" style="font-size: 10px;">AMQP</a> <a href="/tags/APR/" style="font-size: 10px;">APR</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CNZZ/" style="font-size: 10px;">CNZZ</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/DNSPod/" style="font-size: 10px;">DNSPod</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JMS/" style="font-size: 10px;">JMS</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Java7/" style="font-size: 10px;">Java7</a> <a href="/tags/Java8/" style="font-size: 10px;">Java8</a> <a href="/tags/Jdbc/" style="font-size: 10px;">Jdbc</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MemAdmin/" style="font-size: 10px;">MemAdmin</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/OkHttp/" style="font-size: 10px;">OkHttp</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/RestTemplate/" style="font-size: 12.5px;">RestTemplate</a> <a href="/tags/Spring/" style="font-size: 17.5px;">Spring</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/StringBuffer/" style="font-size: 10px;">StringBuffer</a> <a href="/tags/StringBuilder/" style="font-size: 10px;">StringBuilder</a> <a href="/tags/TWR/" style="font-size: 10px;">TWR</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/httpClient/" style="font-size: 12.5px;">httpClient</a> <a href="/tags/ibatis/" style="font-size: 10px;">ibatis</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/jmagick/" style="font-size: 12.5px;">jmagick</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/perftools/" style="font-size: 10px;">perftools</a> <a href="/tags/pinyin4j/" style="font-size: 10px;">pinyin4j</a> <a href="/tags/rabbitmq/" style="font-size: 10px;">rabbitmq</a> <a href="/tags/sdkman/" style="font-size: 10px;">sdkman</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/tomcat/" style="font-size: 12.5px;">tomcat</a> <a href="/tags/websocket/" style="font-size: 12.5px;">websocket</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/windows/" style="font-size: 12.5px;">windows</a> <a href="/tags/参数配置/" style="font-size: 10px;">参数配置</a> <a href="/tags/地图/" style="font-size: 15px;">地图</a> <a href="/tags/坐标运算/" style="font-size: 10px;">坐标运算</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/心态/" style="font-size: 10px;">心态</a> <a href="/tags/数据源/" style="font-size: 10px;">数据源</a> <a href="/tags/最佳实践/" style="font-size: 10px;">最佳实践</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/职业发展/" style="font-size: 10px;">职业发展</a> <a href="/tags/距离/" style="font-size: 10px;">距离</a> <a href="/tags/连接池/" style="font-size: 10px;">连接池</a> <a href="/tags/重试工具/" style="font-size: 10px;">重试工具</a>
+    </div>
+  </div>
+
+        
+        <div class="linkslist">
+    <p class="asidetitle">相关链接</p>
+    <ul>
+        <li>
+            <a href="http://spring.io" target="_blank">
+                Spring
+            </a>
+        </li>
+        <li>
+            <a href="http://liuxing87327.iteye.com" target="_blank">
+                iTeye
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/" target="_blank">
+                GitHub
+            </a>
+        </li>
+        <li>
+            <a href="https://bitbucket.org/" target="_blank">
+                Bitbucket.org
+            </a>
+        </li>
+        <li>
+            <a href="http://www.stackoverflow.com/" target="_blank">
+                Stack Overflow
+            </a>
+        </li>
+        <li>
+            <a href="http://developer.android.com/" target="_blank">
+                Android Developer
+            </a>
+        </li>
+        <li>
+            <a href="http://blog.jobbole.com/" target="_blank">
+                Jobbole
+            </a>
+        </li>
+        <li>
+            <a href="http://www.ruanyifeng.com/blog/" target="_blank">
+                阮一峰的网络日志
+            </a>
+        </li>
+        <li>
+            <a href="http://jinnianshilongnian.iteye.com/" target="_blank">开涛的博客</a>
+        </li>
+        <li>
+            <a href="http://kuang.io" target="_blank">
+                闷骚乔巴的博客
+            </a>
+        </li>
+        <li><a href="http://hexo.io/zh-cn" target="_blank" title="Hexo">Hexo</a></li>
+        <li><a href="http://gengbiao.me" target="_blank" title="coney">coney's Blog</a></li>
+        <li><a href="http://www.kailing.pub" target="_blank" title="KL博客">KL博客</a></li>
+    </ul>
+</div>
+
+        
+        <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+        
+        <div class="">
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=260 height=52 src="//music.163.com/outchain/player?type=2&id=2533578&auto=1&height=32"></iframe>
+</div>
+        
+    </aside>
+
+</div>
+    </div>
+    <footer><div id="footer">
+    
+    <p class="copyright"> © 2019
+        
+        <a href="http://liuxing.info" target="_blank" title="liuxing">liuxing</a>
+        
+        && Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> && Theme by <a
+                href="http://gengbiao.me" target="_blank" title="coney">coney</a>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.navbar').click(function () {
+            $('header nav').toggleClass('shownav');
+        });
+        var myWidth = 0;
+
+        function getSize() {
+            if (typeof( window.innerWidth ) == 'number') {
+                myWidth = window.innerWidth;
+            } else if (document.documentElement && document.documentElement.clientWidth) {
+                myWidth = document.documentElement.clientWidth;
+            }
+            ;
+        };
+        var m = $('#main'),
+                a = $('#asidepart'),
+                c = $('.closeaside'),
+                o = $('.openaside');
+        $(window).resize(function () {
+            getSize();
+            if (myWidth >= 1024) {
+                $('header nav').removeClass('shownav');
+            } else {
+                m.removeClass('moveMain');
+                a.css('display', 'block').removeClass('fadeOut');
+                o.css('display', 'none');
+                
+            }
+        });
+
+        c.click(function () {
+            a.addClass('fadeOut').css('display', 'none');
+            o.css('display', 'block').addClass('fadeIn');
+            m.addClass('moveMain');
+        });
+
+        o.click(function () {
+            o.css('display', 'none').removeClass('beforeFadeIn');
+            a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+            m.removeClass('moveMain');
+        });
+
+        $(window).scroll(function () {
+            o.css("top", Math.max(80, 260 - $(this).scrollTop()));
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var ai = $('.article-content>iframe'),
+                ae = $('.article-content>embed'),
+                t = $('#toc'),
+                h = $('article h2')
+        ah = $('article h2'),
+                ta = $('#toc.toc-aside'),
+                o = $('.openaside'),
+                c = $('.closeaside');
+        if (ai.length > 0) {
+            ai.wrap('<div class="video-container" />');
+        }
+        ;
+        if (ae.length > 0) {
+            ae.wrap('<div class="video-container" />');
+        }
+        ;
+        if (ah.length == 0) {
+            t.css('display', 'none');
+        } else {
+            c.click(function () {
+                ta.css('display', 'block').addClass('fadeIn');
+            });
+            o.click(function () {
+                ta.css('display', 'none');
+            });
+            $(window).scroll(function () {
+                ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
+            });
+        }
+        ;
+
+        // 获取设备信息
+        var ua = navigator.userAgent;
+        console.log(ua)
+        var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
+                isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
+                isAndroid = ua.match(/(Android)\s+([\d.]+)/),
+                isMobile = isIphone || isAndroid;
+
+        // 文章目录自动浮动
+        if (!isMobile) {
+            var initOffsetTop = $('#toc').offset().top,
+                    isFixed = false;
+
+            $(window).scroll(function () {
+                setTimeout(function () {
+                    var offsetTop = $('#toc').offset().top,
+                            scrollTop = $(this).scrollTop();
+
+                    if (scrollTop >= offsetTop && isFixed === false) {
+                        $('#toc').css({
+                            position: 'fixed',
+                            right: '35px',
+                            top: '-10px',
+                            "z-index": 999,
+                            "overflow-y": 'auto',
+                            "max-height": '600px'
+                        }).hide().fadeIn(500);
+
+                        isFixed = true;
+
+                        $("#asidepart").hide();
+                    }
+
+                    if (scrollTop < initOffsetTop && isFixed === true) {
+                        $('#toc').css({
+                            position: 'static',
+                            "overflow-y": 'auto',
+                            "max-height": 'auto'
+                        }).hide().fadeIn(500);
+                        isFixed = false;
+
+                        $("#asidepart").show();
+                    }
+                }, 50);
+            });
+        }
+    });
+</script>
+
+
+
+
+
+<script type="text/javascript">
+    var duoshuoQuery = {short_name: "liuxing87327"};
+
+    $(document).ready(function () {
+        (function () {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0]
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    });
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.article-content').each(function (i) {
+            $(this).find('img').each(function () {
+                if ($(this).parent().hasClass('fancybox')) return;
+                var alt = this.alt;
+                if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+                $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+            });
+            $(this).find('.fancybox').each(function () {
+                $(this).attr('rel', 'article' + i);
+            });
+        });
+        if ($.fancybox) {
+            $('.fancybox').fancybox();
+        }
+    });
+</script>
+
+
+
+<script>
+    
+        var _bdImg = '4';
+    
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {"tsina": "1809603852", "tqq": "544841462", "t163": "liuxing87327@163.com"},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": [
+                "qzone",
+                "tsina",
+                "weixin",
+                "renren",
+                "tqq",
+                "tieba",
+                "douban",
+                "sqq",
+                "diandian",
+                "huaban",
+                "youdao",
+                "mail",
+                "ty",
+                "fbook",
+                "twi",
+                "linkedin",
+                "copy",
+                "print"
+            ],
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "slide": {
+            "type": "slide",
+            "bdImg": _bdImg,
+            "bdPos": "right",
+            "bdTop": "250"
+        },
+        "image": {
+            "viewList": [
+                "weixin",
+                "qzone",
+                "tsina",
+                "renren",
+                "douban",
+                "tqq"
+            ],
+            "viewText": "分享：",
+            "viewSize": "24"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": [
+                "weixin",
+                "qzone",
+                "tsina",
+                "renren",
+                "douban",
+                "tqq"
+            ]
+        }
+    };
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+
+
+<div style="display:none;">
+    <script src="http://s11.cnzz.com/z_stat.php?id=1255357079&web_id=1255357079" language="JavaScript"></script>
+</div>
+
+  </body>
+</html>
+
